@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
 import { Helmet } from "react-helmet-async";
 
-
 const Register = () => {
   const { logInByGoogle, signInByEmailPassword, user, manageProfile, logOut } =
     useContext(AuthContext);
@@ -88,30 +87,21 @@ const Register = () => {
         <title>Sign Up | Chill Gamer</title>
       </Helmet>
       <div className="flex justify-center items-center py-14 px-3">
-      <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
+        <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
           {/* form div */}
           <div className="bg-white w-full md:w-[50%] p-4 shrink-0 shadow-2xl">
             {/* title */}
             <h1 className="text-4xl text-center font-bold mb-5 flex justify-between items-center px-6">
-                          <span >Register</span>
-                          <button onClick={handleGoogleLogIn}  className="text-2xl text-[#0B0223]">
-                            <FaGoogle></FaGoogle>
-                          </button>
-                        </h1>
-            {/* google log in */}
-            {/* <div className="w-full px-8">
+              <span>Register</span>
               <button
                 onClick={handleGoogleLogIn}
-                className="btn text-[10px] md:text-sm border border-solid border-[#8758f1] hover:text-white hover:bg-gradient-to-b from-[#f948b2] to-[#8758f1] w-full flex items-center justify-center space-x-2 mb-2"
+                className="text-2xl text-[#0B0223]"
               >
-                <FaGoogle className="text-[#8758f1] " />
-                <span>Register with Google</span>
+                <FaGoogle></FaGoogle>
               </button>
-            </div> */}
-            {/* divider */}
-            {/* <div className="px-8 mt-4">
-              <div className="divider my-0">OR</div>
-            </div> */}
+            </h1>
+            {/* google log in */}
+           
             {/* form  */}
             <form className="card-body" onSubmit={handleSubmit}>
               <div className="form-control">
@@ -178,7 +168,6 @@ const Register = () => {
                   {errorMessage && errorMessage}{" "}
                 </p>
               </div>
-             
             </form>
           </div>
           {/* right info div */}
