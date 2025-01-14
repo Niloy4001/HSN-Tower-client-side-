@@ -4,8 +4,6 @@ import About from "./About";
 import Coupon from "./Coupon";
 import Location from "./Location";
 
-
-
 const Home = () => {
   return (
     <div>
