@@ -1,6 +1,26 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Apartment = () => {
+  const axiosPublic = useAxiosPublic()
+  const { isPending, isError, data : apartments, error } = useQuery({
+    queryKey: ['apartments'],
+    queryFn: async()=>{
+      const {data} = await axiosPublic.get('http://localhost:4000/apartments')
+      return data
+    },
+  })
+console.log(apartments);
+
+  if (isPending) {
+    return <span>Loading...</span>
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
   return (
     <div>
       <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">
