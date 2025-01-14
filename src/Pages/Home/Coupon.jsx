@@ -3,7 +3,9 @@ import React from "react";
 const Coupon = () => {
   return (
     <div>
-        <h1 className="text-4xl lg:text-5xl font-bold  text-black leading-tight text-center mb-6">Collect Coupon</h1>
+      <h1 className="text-4xl lg:text-5xl font-bold  text-black leading-tight text-center mb-6">
+        Collect Coupon
+      </h1>
       <div className=" justify-center items-center bg-gray-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* card 1 */}
         <div className="flex bg-pink-300 text-black rounded-lg shadow-lg">
