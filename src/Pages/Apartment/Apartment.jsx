@@ -3,11 +3,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Spinner from "../../Components/Common/Spinner";
+import { useNavigate } from "react-router-dom";
 
 const Apartment = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [nextDisable, setNextDisable] = useState(false);
-  const [prevDisable, setPrevDisable] = useState(false);
+  const [filter, setFilter] = useState();
+  // console.log(filter);
+  const navigate = useNavigate();
+
   // console.log(currentPage);
 
   const axiosPublic = useAxiosPublic();
@@ -21,7 +24,7 @@ const Apartment = () => {
     queryKey: ["apartments"],
     queryFn: async () => {
       const { data } = await axiosPublic.get(
-        `http://localhost:4000/apartments?page=${currentPage}`
+        `/apartments?page=${currentPage}&min=${filter?.min}&max=${filter?.max}`
       );
       return data;
     },
@@ -29,7 +32,7 @@ const Apartment = () => {
 
   useEffect(() => {
     refetch();
-  }, [currentPage]);
+  }, [currentPage, filter]);
 
   if (isPending) {
     return <Spinner></Spinner>;
@@ -42,10 +45,11 @@ const Apartment = () => {
 
   // console.log(arr);
 
+  // handle page changes
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  // handle next and previous page changes
   const handleNextPrevBtn = (status) => {
     if (status === "next") {
       const pageNum = currentPage + 1;
@@ -70,51 +74,108 @@ const Apartment = () => {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+
+  // handle filter
+  const handleFilter = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const min = form.min.value;
+    const max = form.max.value;
+
+    setFilter({ min: min, max: max });
+    form.reset();
+  };
   return (
     <div>
       <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">
         Apartment
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-        {apartments.data.map((apartment) => (
-          <div
-            key={apartment._id}
-            className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
-          >
-            <img
-              src={apartment.apartmentImage}
-              alt="Apartment"
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-bold text-gray-800">Apartment</h2>
-              <p className="mt-2 text-gray-600">
-                <span className="font-semibold">Floor No:</span>{" "}
-                {apartment.floorNo}
-              </p>
-              <p className="mt-1 text-gray-600">
-                <span className="font-semibold">Block Name:</span>{" "}
-                {apartment.blockName}
-              </p>
-              <p className="mt-1 text-gray-600">
-                <span className="font-semibold">Apartment No:</span>{" "}
-                {apartment.apartmentNo}
-              </p>
-              <p className="mt-1 text-gray-600">
-                <span className="font-semibold">Rent:</span> ৳{apartment.rent}
-              </p>
-              <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                View Agreement
-              </button>
-            </div>
+      {/* filter */}
+      <div className="flex justify-center py-6">
+        <div className="dropdown dropdown-hover">
+          <div tabIndex={0} role="button" className="btn m-1">
+            Filter
           </div>
-        ))}
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+          >
+            <form onSubmit={(e) => handleFilter(e)}>
+              <li>
+                <input
+                  name="min"
+                  type="number"
+                  placeholder="Min Price"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </li>
+              <li>
+                <input
+                  name="max"
+                  type="number"
+                  placeholder="Max Price"
+                  className="input input-bordered w-full max-w-xs"
+                />
+              </li>
+              <li>
+                <button className="btn">Filter</button>
+              </li>
+            </form>
+          </ul>
+        </div>
       </div>
+      {apartments.data.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+          {apartments.data.map((apartment) => (
+            <div
+              key={apartment._id}
+              className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+            >
+              <img
+                src={apartment.apartmentImage}
+                alt="Apartment"
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-gray-800">Apartment</h2>
+                <p className="mt-2 text-gray-600">
+                  <span className="font-semibold">Floor No:</span>{" "}
+                  {apartment.floorNo}
+                </p>
+                <p className="mt-1 text-gray-600">
+                  <span className="font-semibold">Block Name:</span>{" "}
+                  {apartment.blockName}
+                </p>
+                <p className="mt-1 text-gray-600">
+                  <span className="font-semibold">Apartment No:</span>{" "}
+                  {apartment.apartmentNo}
+                </p>
+                <p className="mt-1 text-gray-600">
+                  <span className="font-semibold">Rent:</span> ৳{apartment.rent}
+                </p>
+                <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                  View Agreement
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {apartments.data.length < 1 && (
+        <div className="flex min-h-screen justify-center items-center">
+          <div>
+            <button className="btn" onClick={() => navigate(-1)}>
+              Go Back
+            </button>
+            <p className="font-bold text-xl text-center">No Data Found</p>
+          </div>
+        </div>
+      )}
       {/* pagination button */}
       <div className="flex justify-center flex-wrap py-5">
         <div>
           <button
-            disabled={prevDisable}
+            disabled={currentPage === 1}
             className="btn"
             onClick={() => handleNextPrevBtn("prev")}
           >
@@ -134,7 +195,7 @@ const Apartment = () => {
         </div>
         <div>
           <button
-            disabled={nextDisable}
+            disabled={currentPage === apartments.totalPages}
             className="btn"
             onClick={() => handleNextPrevBtn("next")}
           >
