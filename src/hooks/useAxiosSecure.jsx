@@ -12,6 +12,22 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Adding a request interceptor
+  axios.interceptors.request.use(
+    function (config) {
+      const token = localStorage.getItem('access-token')
+      config.headers.authorization = `Bearer ${token}`
+      // Do something before request is sent
+      return config;
+    },
+    function (error) {
+      // Do something with request error
+      return Promise.reject(error);
+    }
+  );
+
+  // Adding a response interceptor
   useEffect(() => {
     axiosSecure.interceptors.response.use(
       (res) => {
