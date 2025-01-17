@@ -11,6 +11,7 @@ import Announcement from "../Pages/Dashboard/Announcement";
 import DashboardContent from "../Pages/Dashboard/DashboardContent";
 import MakePayment from "../Pages/Dashboard/MakePayment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
+import MemberPrivateRoute from "./MemberPrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -49,11 +50,13 @@ const router = createBrowserRouter([
         },
         {
           path:'/dashboard/makePayment',
-          element:<MakePayment></MakePayment>
+          element:<MemberPrivateRoute>
+            <MakePayment></MakePayment>
+          </MemberPrivateRoute>
         },
         {
           path:'/dashboard/paymentHistory',
-          element:<PaymentHistory></PaymentHistory>
+          element:<MemberPrivateRoute><PaymentHistory></PaymentHistory></MemberPrivateRoute>
         },
       ]
     }
