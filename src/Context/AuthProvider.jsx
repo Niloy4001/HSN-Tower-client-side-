@@ -18,6 +18,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [paymentInfo, setPaymentInfo] = useState({})
   const axiosPublic = useAxiosPublic();
 
   // login or register by google
@@ -81,6 +82,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     logInByEmailPassword,
     manageProfile,
+    paymentInfo,
+    setPaymentInfo,
   };
 
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

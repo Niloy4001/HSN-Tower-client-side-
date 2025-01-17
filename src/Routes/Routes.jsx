@@ -12,54 +12,69 @@ import DashboardContent from "../Pages/Dashboard/DashboardContent";
 import MakePayment from "../Pages/Dashboard/MakePayment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import MemberPrivateRoute from "./MemberPrivateRoute";
+import Payment from "../Pages/Payment/Payment";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      children:[
-        {
-          path:"/",
-          element: <Home></Home>
-        },
-        {
-          path:"/apartment",
-          element: <Apartment></Apartment>
-        },
-      ]
-    },
-    {
-      path: "/login",
-      element:<Login></Login>,
-    },
-    {
-      path: "/register",
-      element:<Register></Register>,
-    },
-    {
-      path:'/dashboard',
-      element:<DashboardLayout></DashboardLayout>,
-      children:[
-        {
-          index:true,
-          element:<DashboardContent></DashboardContent>
-        },
-        {
-          path:'/dashboard/announcements',
-          element:<Announcement></Announcement>
-        },
-        {
-          path:'/dashboard/makePayment',
-          element:<MemberPrivateRoute>
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/apartment",
+        element: <Apartment></Apartment>,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        index: true,
+        element: <DashboardContent></DashboardContent>,
+      },
+      {
+        path: "/dashboard/announcements",
+        element: <Announcement></Announcement>,
+      },
+      {
+        path: "/dashboard/makePayment",
+        element: (
+          <MemberPrivateRoute>
             <MakePayment></MakePayment>
           </MemberPrivateRoute>
-        },
-        {
-          path:'/dashboard/paymentHistory',
-          element:<MemberPrivateRoute><PaymentHistory></PaymentHistory></MemberPrivateRoute>
-        },
-      ]
-    }
-  ]);
+        ),
+      },
+      {
+        path: "/dashboard/payment",
+        element: (
+          <MemberPrivateRoute>
+            <Payment></Payment>
+          </MemberPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: (
+          <MemberPrivateRoute>
+            <PaymentHistory></PaymentHistory>
+          </MemberPrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
-  export default router;
+export default router;

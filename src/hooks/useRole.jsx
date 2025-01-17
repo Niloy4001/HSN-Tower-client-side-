@@ -15,7 +15,7 @@ const useRole = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: ["role",user?.email],
+    queryKey: ["role"],
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/checkRole/${user?.email}`);
       return data.role;
