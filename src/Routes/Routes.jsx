@@ -7,6 +7,11 @@ import Home from "../Pages/Home/Home";
 import Apartment from "../Pages/Apartment/Apartment";
 import DashboardLayout from "../Layout/DashboardLayout";
 
+import Announcement from "../Pages/Dashboard/Announcement";
+import DashboardContent from "../Pages/Dashboard/DashboardContent";
+import MakePayment from "../Pages/Dashboard/MakePayment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -32,7 +37,25 @@ const router = createBrowserRouter([
     },
     {
       path:'/dashboard',
-      element:<DashboardLayout></DashboardLayout>
+      element:<DashboardLayout></DashboardLayout>,
+      children:[
+        {
+          index:true,
+          element:<DashboardContent></DashboardContent>
+        },
+        {
+          path:'/dashboard/announcements',
+          element:<Announcement></Announcement>
+        },
+        {
+          path:'/dashboard/makePayment',
+          element:<MakePayment></MakePayment>
+        },
+        {
+          path:'/dashboard/paymentHistory',
+          element:<PaymentHistory></PaymentHistory>
+        },
+      ]
     }
   ]);
 
