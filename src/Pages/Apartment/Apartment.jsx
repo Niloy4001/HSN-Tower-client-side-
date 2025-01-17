@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Spinner from "../../Components/Common/Spinner";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Apartment = () => {
+  const {user} = useContext(AuthContext)
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState();
   // console.log(filter);
@@ -14,6 +18,7 @@ const Apartment = () => {
   // console.log(currentPage);
 
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     isPending,
     isError,
@@ -37,9 +42,8 @@ const Apartment = () => {
   if (isPending) {
     return <Spinner></Spinner>;
   }
-
-  console.log(apartments.data);
-  console.log(currentPage);
+  
+  
 
   const arr = [...Array(apartments.totalPages).keys()];
 
@@ -85,6 +89,33 @@ const Apartment = () => {
     setFilter({ min: min, max: max });
     form.reset();
   };
+
+
+  // handle Agreement
+  const handleAgreement =async (apartment) =>{
+    if (!user) {
+      return navigate('/login')
+    }
+
+    
+    apartment.UserName = user?.displayName
+    apartment.UserEmail = user?.email
+    apartment.status = "Pending"
+    console.log(apartment);
+
+    const {data} = await axiosSecure.post('/agreement',apartment)
+    if (data.acknowledged) {
+      toast.success(" Your agreement request submitted")
+    }
+    if (data.message) {
+      toast.error(" You can't multiple agreement")
+    }
+
+
+    
+
+    
+  }
   return (
     <div>
       <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">
@@ -153,7 +184,9 @@ const Apartment = () => {
                 <p className="mt-1 text-gray-600">
                   <span className="font-semibold">Rent:</span> ৳{apartment.rent}
                 </p>
-                <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                <button
+                onClick={()=>handleAgreement(apartment)}
+                className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
                   View Agreement
                 </button>
               </div>
