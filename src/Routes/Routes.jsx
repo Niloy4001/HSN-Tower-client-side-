@@ -13,6 +13,8 @@ import MakePayment from "../Pages/Dashboard/MakePayment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import MemberPrivateRoute from "./MemberPrivateRoute";
 import Payment from "../Pages/Payment/Payment";
+import ManageMembers from "../Pages/Dashboard/Admin/ManageMembers";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
           <MemberPrivateRoute>
             <PaymentHistory></PaymentHistory>
           </MemberPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manageMembers",
+        element: (
+          <AdminPrivateRoute>
+            <ManageMembers></ManageMembers>
+          </AdminPrivateRoute>
         ),
       },
     ],

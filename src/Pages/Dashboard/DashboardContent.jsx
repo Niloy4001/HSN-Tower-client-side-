@@ -1,12 +1,12 @@
 import React from 'react'
-import MyProfile from './MyProfile'
+import Profile from '../../Components/Profile'
 
 
 
 const DashboardContent = () => {
     
   return (
-    <div><MyProfile></MyProfile></div>
+    <div><Profile></Profile></div>
   )
 }
 

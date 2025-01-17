@@ -1,13 +1,13 @@
 import React from "react";
 import DashboardContent from "../Pages/Dashboard/DashboardContent";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { RiArchiveDrawerFill } from "react-icons/ri";
 import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
-  const {role} = useRole()
+  const { role } = useRole();
   console.log(role);
-  
+
   return (
     <div className="flex min-h-screen">
       <div className="drawer lg:drawer-open">
@@ -18,8 +18,11 @@ const DashboardLayout = () => {
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
-           <RiArchiveDrawerFill /> Open Dashboard
+            <RiArchiveDrawerFill /> Open Dashboard
           </label>
+          <Link className="btn btn-primary" to={"/"}>
+            Home
+          </Link>
           <div className="w-full p-10">
             <Outlet></Outlet>
           </div>
@@ -32,35 +35,90 @@ const DashboardLayout = () => {
           ></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
             {/* Sidebar content here */}
-            <li><h2 className="text-2xl font-bold mb-8 text-center">Dashboard</h2></li>
             <li>
-              <NavLink to="/dashboard/" className="hover:text-gray-300">
-                My Profile
-              </NavLink>
+              <h2 className="text-2xl font-bold mb-8 text-center">Dashboard</h2>
             </li>
-            {
-              role === 'Member' && 
+            {role === "User" && (
               <>
-              <li>
-              <NavLink to="/dashboard/makePayment" className="hover:text-gray-300">
-                Make Payment
-              </NavLink>
-            </li>
-              <li>
-              <NavLink to="/dashboard/paymentHistory" className="hover:text-gray-300">
-                Payment History
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink to="/dashboard/" className="hover:text-gray-300">
+                    My Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/announcements"
+                    className="hover:text-gray-300"
+                  >
+                    Announcements
+                  </NavLink>
+                </li>
               </>
-            }
-            <li>
-              <NavLink
-                to="/dashboard/announcements"
-                className="hover:text-gray-300"
-              >
-                Announcements
-              </NavLink>
-            </li>
+            )}
+            {role === "Member" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/makePayment"
+                    className="hover:text-gray-300"
+                  >
+                    Make Payment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/paymentHistory"
+                    className="hover:text-gray-300"
+                  >
+                    Payment History
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role === "Admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/adminProfile"
+                    className="hover:text-gray-300"
+                  >
+                    Admin Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manageMembers"
+                    className="hover:text-gray-300"
+                  >
+                    Manage Members
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/makeAnnouncement"
+                    className="hover:text-gray-300"
+                  >
+                    Make Announcement
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/agreementRequests"
+                    className="hover:text-gray-300"
+                  >
+                    Agreement Request
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manageCoupons"
+                    className="hover:text-gray-300"
+                  >
+                    Manage Coupons
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

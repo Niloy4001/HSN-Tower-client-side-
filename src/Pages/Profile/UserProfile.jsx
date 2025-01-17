@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 
-const MyProfile = () => {
+const UserProfile = () => {
   const {user } = useContext(AuthContext)
   return (
     <div>
@@ -34,4 +34,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default UserProfile;

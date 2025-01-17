@@ -25,16 +25,49 @@ const PaymentHistory = () => {
 
   console.log(histories);
   
-  // useEffect(() => {
-  //   refetch();
-  // }, []);
+  
 
   if (isPending) {
     return <Spinner></Spinner>;
   }
   
   return (
-    <div>PaymentHistory</div>
+    <div>PaymentHistory
+
+      {
+        histories.length > 0 && <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Transaction Id</th>
+              <th>Date</th>
+              <th>Rent of Month</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {
+              histories.map(history=><tr key={history._id}>
+                <th>{history.name}</th>
+                <td>{history.email}</td>
+                <td>{history.transactionId}</td>
+                <td>{history.date}</td>
+                <td>{history.month}</td>
+              </tr>)
+            }
+
+          </tbody>
+        </table>
+      </div>
+      }
+      {
+        histories.length<1 && <p>No payment history</p>
+      }
+
+    </div>
   )
 }
 
