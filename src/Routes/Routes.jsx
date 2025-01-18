@@ -15,6 +15,7 @@ import MemberPrivateRoute from "./MemberPrivateRoute";
 import Payment from "../Pages/Payment/Payment";
 import ManageMembers from "../Pages/Dashboard/Admin/ManageMembers";
 import AdminPrivateRoute from "./AdminPrivateRoute";
+import MakeAnnouncement from "../Pages/Dashboard/Admin/MakeAnnouncement";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,14 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <ManageMembers></ManageMembers>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/makeAnnouncement",
+        element: (
+          <AdminPrivateRoute>
+            <MakeAnnouncement></MakeAnnouncement>
           </AdminPrivateRoute>
         ),
       },
