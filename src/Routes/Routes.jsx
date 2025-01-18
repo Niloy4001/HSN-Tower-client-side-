@@ -18,6 +18,7 @@ import AdminPrivateRoute from "./AdminPrivateRoute";
 import MakeAnnouncement from "../Pages/Dashboard/Admin/MakeAnnouncement";
 import AgreementRequest from "../Pages/Dashboard/Admin/AgreementRequest";
 import ManageCoupon from "../Pages/Dashboard/Admin/ManageCoupon";
+import AdminProfile from "../Pages/Profile/AdminProfile";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <ManageCoupon></ManageCoupon>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/adminProfile",
+        element: (
+          <AdminPrivateRoute>
+            <AdminProfile></AdminProfile>
           </AdminPrivateRoute>
         ),
       },
