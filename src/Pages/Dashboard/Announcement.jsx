@@ -1,25 +1,48 @@
-import React from 'react'
+import React from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../../Components/Common/Spinner";
 
 const Announcement = () => {
-    const announcements = [
-        "Maintenance work on January 20th.",
-        "Water supply will be interrupted from 10 AM to 2 PM on January 21st.",
-        "New parking slots are available from February.",
-      ];
+  const axiosPublic = useAxiosPublic();
+  const {
+    isPending,
+    isError,
+    data: announcements,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["member"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/announcements`);
+      return data;
+    },
+  });
+
+  if (isPending) {
+    return <Spinner></Spinner>;
+  }
+  console.log(announcements);
+
   return (
     <div>
-    <h1 className="text-2xl font-bold mb-5">Announcements</h1>
-    <div className="bg-white shadow-md rounded-lg p-5">
-      <ul className="space-y-3">
-        {announcements.map((announcement, index) => (
-          <li key={index} className="text-lg border-b pb-2">
-            {announcement}
-          </li>
-        ))}
-      </ul>
+      <h1 className="text-2xl font-bold mb-5">Announcements</h1>
+      {announcements.map((announcement) => (
+        <div
+          key={announcement._id}
+          className="collapse collapse-arrow bg-base-200"
+        >
+          <input type="radio" name="my-accordion-2" defaultChecked />
+          <div className="collapse-title text-xl font-medium">
+            {announcement.title}
+          </div>
+          <div className="collapse-content">
+            <p>{announcement.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Announcement
+export default Announcement;
