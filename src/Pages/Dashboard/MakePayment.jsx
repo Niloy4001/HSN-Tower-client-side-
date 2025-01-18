@@ -5,15 +5,17 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Spinner from "../../Components/Common/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { info } from "autoprefixer";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MakePayment = () => {
   const { user,paymentInfo,setPaymentInfo } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate()
   const { data, isPending, refetch } = useQuery({
     queryKey: ["apartmentInfo", user?.email],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/apartmentInfo/${user?.email}`);
+      const { data } = await axiosSecure.get(`/apartmentInfo/${user?.email}`);
       return data;
     },
   });
@@ -47,7 +49,7 @@ setPaymentInfo(info)
 //   console.log(data);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5 py-12">
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-6">Rent Payment Form</h2>
         <form onSubmit={(e)=>handleSubmit(e)}>

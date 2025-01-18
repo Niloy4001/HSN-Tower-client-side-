@@ -6,7 +6,7 @@ import Location from "./Location";
 
 const Home = () => {
   return (
-    <div>
+    <div className="space-y-9 md:space-y-20">
       <Banner></Banner>
       <About></About>
       <Coupon></Coupon>

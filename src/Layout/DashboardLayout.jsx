@@ -21,9 +21,11 @@ const DashboardLayout = () => {
           >
             <RiArchiveDrawerFill /> Open Dashboard
           </label>
-          <Link className="btn btn-primary" to={"/"}>
-            Home
+          <div className="flex ml-4 justify-center ">
+          <Link className="btn  " to={"/"}>
+          Go to Home
           </Link>
+          </div>
           <div className="w-full p-10">
             <Outlet></Outlet>
           </div>
@@ -42,7 +44,7 @@ const DashboardLayout = () => {
             {role === "User" && (
               <>
                 <li>
-                  <NavLink to="/dashboard/" className="hover:text-gray-300">
+                  <NavLink to="/dashboard/userProfile" className="hover:text-gray-300">
                     My Profile
                   </NavLink>
                 </li>
@@ -58,6 +60,14 @@ const DashboardLayout = () => {
             )}
             {role === "Member" && (
               <>
+              <li>
+                  <NavLink
+                    to="/dashboard/membersProfile"
+                    className="hover:text-gray-300"
+                  >
+                    My Profile
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/dashboard/makePayment"
@@ -72,6 +82,14 @@ const DashboardLayout = () => {
                     className="hover:text-gray-300"
                   >
                     Payment History
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/announcements"
+                    className="hover:text-gray-300"
+                  >
+                    Announcements
                   </NavLink>
                 </li>
               </>

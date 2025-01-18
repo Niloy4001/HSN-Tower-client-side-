@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../Components/Common/Spinner";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -33,6 +34,9 @@ const AgreementRequest = () => {
         const { data} =await axiosSecure.get(`/changeStatus/${email}`)
         console.log(data);
         refetch()
+        if (data.result.modifiedCount || data.updatedRole.modifiedCount) {
+            toast.success("User Accepted to Member")
+        }
         
     } catch (error) {
         console.log(error.message);
@@ -41,8 +45,17 @@ const AgreementRequest = () => {
   }
 
   // handle reject
-  const handleReject = (email)=>{
-
+  const handleReject =async (email)=>{
+    try {
+        const { data} =await axiosSecure.delete(`/changeStatus/${email}`)
+        toast.custom(<p className="text-orange-400 font-bold">User Rejected</p>)
+        console.log(data);
+        refetch()
+        
+    } catch (error) {
+        console.log(error.message);
+        
+    }
   }
 
   return (

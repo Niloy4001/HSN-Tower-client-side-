@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const links = (
     <>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/apartment"}>Apartment</Link>
+      <NavLink className="font-medium mx-4" to={"/"}>Home</NavLink>
+      <NavLink className="font-medium mx-4" to={"/apartment"}>Apartment</NavLink>
     </>
   );
   return (
@@ -33,7 +33,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100  rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
@@ -63,16 +63,16 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2"
                 >
                   <li className="text-center font-bold">{user && user.displayName}</li>
                   <li>
-                    <Link to={"/dashboard"} className="btn">
+                    <Link to={"/dashboard"} className="btn btn-sm">
                       Dashboard
                     </Link>
                   </li>
                   <li>
-                    <button className="btn" onClick={() => logOut()}>
+                    <button className="btn btn-sm" onClick={() => logOut()}>
                       Logout
                     </button>
                   </li>

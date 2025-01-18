@@ -3,9 +3,9 @@ import about from '../../assets/about.jpg'
 
 const About = () => {
   return (
-    <div className="bg-gray-900 px-5 lg:px-0" id="aboutMe">
-        <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">About The Building</h1>
-      <div className="bg-gray-800 text-white p-8 rounded-lg flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto">
+    <div className="px-5 lg:px-0 py-8 w-[90%] mx-auto" id="aboutMe">
+        <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">About The Building</h1>
+      <div className="bg-gradient-to-b from-blue-500 to-blue-800 text-white p-8 rounded-lg flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto">
         {/* Left Content */}
         <div className="md:w-1/2">
           <h2 className="text-3xl font-bold mb-4">

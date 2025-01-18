@@ -3,9 +3,9 @@ import map from '../../assets/map.jpg'
 import { Link } from 'react-router-dom'
 const Location = () => {
   return (
-    <div className="bg-gray-900 px-5 lg:px-0" >
-            <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">Location</h1>
-          <div className="bg-gray-800 text-white p-8 rounded-lg flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto">
+    <div className="py-7 px-5 lg:px-0" >
+            <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">Location</h1>
+          <div className="bg-gradient-to-b from-blue-500 to-blue-800 text-white p-8 rounded-lg flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto">
             {/* Left Content */}
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-4">

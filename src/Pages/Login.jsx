@@ -51,11 +51,11 @@ const Login = () => {
     navigate("/auth/forgot");
   };
   return (
-    <div>
+    <div className="">
       <Helmet>
         <title>Login | Chill Gamer</title>
       </Helmet>
-      <div className="flex justify-center items-center py-14 px-3">
+      <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
           {/* form div */}
           <div className=" bg-white w-full md:w-[50%] p-4 shrink-0 shadow-2xl">
@@ -100,7 +100,7 @@ const Login = () => {
                 </span>
               </div>
               <div className="form-control mt-6">
-                <button className="btn shadow-2xl text-white bg-gradient-to-b from-[#f948b2] to-[#8758f1]">
+                <button className="btn shadow-2xl text-white bg-gradient-to-b from-blue-500 to-blue-800">
                   Login
                 </button>
               </div>
@@ -112,7 +112,7 @@ const Login = () => {
             </form>
           </div>
           {/* right info div */}
-          <div className="flex items-center justify-center text-white bg-gradient-to-b from-[#f948b2] to-[#8758f1] w-full md:w-[50%] py-7 shadow-2xl">
+          <div className="flex items-center justify-center text-white bg-gradient-to-b from-blue-500 to-blue-800 w-full md:w-[50%] py-7 shadow-2xl">
             <div className="text-center text-white">
               <h1 className="text-3xl font-bold mb-2">Welcome to login</h1>
               <p className="mb-4">Don't have an account?</p>

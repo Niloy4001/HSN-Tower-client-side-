@@ -2,9 +2,11 @@ import React from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Components/Common/Spinner";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Announcement = () => {
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const {
     isPending,
     isError,
@@ -14,7 +16,7 @@ const Announcement = () => {
   } = useQuery({
     queryKey: ["member"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/announcements`);
+      const { data } = await axiosSecure.get(`/announcements`);
       return data;
     },
   });

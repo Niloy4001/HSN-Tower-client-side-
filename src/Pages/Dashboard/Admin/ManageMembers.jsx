@@ -29,11 +29,11 @@ const ManageMembers = () => {
     }
   console.log(members);
 
-  const handleRemove = async(id) =>{
+  const handleRemove = async(id,email) =>{
     try{
-      const {data} =await axiosSecure.patch(`/remove/${id}`)
+      const {data} =await axiosSecure.patch(`/remove/${id}?email=${email}`)
       if (data.modifiedCount) {
-        toast.error("Member removed successfull")
+        toast.custom(<p className='font-bold text-orange-400'>Member removed successfull</p>)
         refetch()
       }
       
@@ -41,6 +41,7 @@ const ManageMembers = () => {
       console.log(error);
       
     }
+   
   }
   
 
@@ -66,7 +67,7 @@ const ManageMembers = () => {
         {/* <th>{member?.displayName}</th> */}
         <th>{member?.name}</th>
         <td>{member?.email}</td>
-        <td><button className='btn btn-sm' onClick={()=>handleRemove(member._id)}>Remove</button></td>
+        <td><button className='btn btn-sm' onClick={()=>handleRemove(member?._id, member?.email)}>Remove</button></td>
       </tr>)}
     </tbody>
   </table>

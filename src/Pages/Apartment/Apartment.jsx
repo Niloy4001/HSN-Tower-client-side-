@@ -7,6 +7,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useRole from "../../hooks/useRole";
 
 const Apartment = () => {
   const {user} = useContext(AuthContext)
@@ -19,6 +20,7 @@ const Apartment = () => {
 
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const {role} = useRole()
   const {
     isPending,
     isError,
@@ -96,7 +98,12 @@ const Apartment = () => {
     if (!user) {
       return navigate('/login')
     }
-
+    if (role === "Admin" ) {
+      return toast.error("Admin cannot request agreement")
+    }
+    if ( role === "Member") {
+      return toast.error(" Member has already an appartment")
+    }
     
     apartment.UserName = user?.displayName
     apartment.UserEmail = user?.email
@@ -117,21 +124,21 @@ const Apartment = () => {
     
   }
   return (
-    <div>
-      <h1 className="text-4xl lg:text-5xl font-bold  text-white leading-tight text-center mb-6">
-        Apartment
+    <div className="w-[90%] mx-auto">
+     <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">
+        Collect Coupon
       </h1>
       {/* filter */}
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center py-6 mb-4">
         <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className="btn m-1">
+          <div tabIndex={0} role="button" className="btn m-1 btn-primary">
             Filter
           </div>
           <ul
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
           >
-            <form onSubmit={(e) => handleFilter(e)}>
+            <form className="space-y-2" onSubmit={(e) => handleFilter(e) }>
               <li>
                 <input
                   name="min"
@@ -149,7 +156,7 @@ const Apartment = () => {
                 />
               </li>
               <li>
-                <button className="btn">Filter</button>
+                <button className="btn btn-primary">Filter</button>
               </li>
             </form>
           </ul>
@@ -187,7 +194,7 @@ const Apartment = () => {
                 <button
                 onClick={()=>handleAgreement(apartment)}
                 className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                  View Agreement
+                 Agreement
                 </button>
               </div>
             </div>
@@ -205,17 +212,17 @@ const Apartment = () => {
         </div>
       )}
       {/* pagination button */}
-      <div className="flex justify-center flex-wrap py-5">
+      <div className="flex justify-center flex-wrap py-8 gap-2">
         <div>
           <button
             disabled={currentPage === 1}
-            className="btn"
+            className="btn btn-primary"
             onClick={() => handleNextPrevBtn("prev")}
           >
             Prev
           </button>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-2">
           {arr.map((idx) => (
             <button
               key={idx}
@@ -229,7 +236,7 @@ const Apartment = () => {
         <div>
           <button
             disabled={currentPage === apartments.totalPages}
-            className="btn"
+            className="btn btn-primary"
             onClick={() => handleNextPrevBtn("next")}
           >
             Next

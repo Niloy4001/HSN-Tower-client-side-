@@ -42,8 +42,10 @@ const CheckoutForm = () => {
     });
     if (error) {
       console.log("[error]", error);
+      toast.error(error.message)
     } else {
       console.log("[PaymentMethod]", paymentMethod);
+      toast.success(`Your Payment successfull , Transaction Id : ${paymentMethod.id}`)
     }
 
     // confirm payment
@@ -83,6 +85,7 @@ const CheckoutForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <CardElement
+        className="border border-solid border-blue-600 p-3 rounded-md"
           options={{
             style: {
               base: {
@@ -98,6 +101,7 @@ const CheckoutForm = () => {
             },
           }}
         />
+        <div className="flex justify-center mt-7">
         <button
           type="submit"
           className="btn btn-primary"
@@ -105,6 +109,7 @@ const CheckoutForm = () => {
         >
           Pay
         </button>
+        </div>
         {error && <p className="text-red-600">{error}</p>}
         {success && <p className="text-green-600">{success}</p>}
       </form>

@@ -6,10 +6,12 @@ import { HiOutlineEyeOff } from "react-icons/hi";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
   const { logInByGoogle, signInByEmailPassword, user, manageProfile, logOut } =
     useContext(AuthContext);
+    const axiosPublic = useAxiosPublic()
   const [errorMessage, setErrorMessage] = useState("");
   const nameRef = useRef();
   const photoUrlRef = useRef();
@@ -36,28 +38,30 @@ const Register = () => {
       icon: "error",
     });
   };
-  const notifyForLogIn = () => {
+  const notifyForSuccessfull = () => {
     Swal.fire({
-      title: "Registration Successful, Please Log In",
+      title: "Registration Successful",
       confirmButtonColor: "green",
       icon: "success",
     });
   };
 
   // handle google sign in
-  const handleGoogleLogIn = () => {
+  const handleGoogleLogIn =async() => {
     setErrorMessage("");
-    logInByGoogle()
-      .then((res) => {
-        navigate("/");
-        logOut();
-        notifyForLogIn();
-      })
+   await logInByGoogle()
+   navigate("/");
+   notifyForSuccessfull()
+    //   .then((res) => {
+    // //     const userInfo = {name:user?.displayName ,email: user?.email, role: "User" }
+    // //  axiosPublic.post("/user", userInfo);
+    //   })
       .catch((err) => setErrorMessage(err.message));
   };
-
+  
+  // const userInfo = ;
   // handle form on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setErrorMessage("");
     const name = nameRef.current.value;
@@ -69,24 +73,34 @@ const Register = () => {
       return notify();
     }
 
-    signInByEmailPassword(email, password)
-      .then((res) => {
-        navigate("/");
-        notifyForLogIn();
-        logOut();
-        e.target.reset();
-        manageProfile(name, photo)
-          .then((response) => "good")
-          .catch((err) => setErrorMessage(err.message));
-      })
-      .catch((err) => setErrorMessage(err.message));
+    try {
+      await signInByEmailPassword(email, password)
+      await manageProfile(name, photo)
+      // const userInfo = {name:user?.displayName ,email: user?.email, role: "User" }
+      // await  axiosPublic.post("/user", userInfo);
+      navigate("/");
+      notifyForSuccessfull();
+      e.target.reset();
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
+
+    // signInByEmailPassword(email, password)
+    //   .then((res) => {
+    //     navigate("/");
+    //     e.target.reset();
+    //     manageProfile(name, photo)
+    //       .then((response) => "good")
+    //       .catch((err) => setErrorMessage(err.message));
+    //   })
+    //   .catch((err) => setErrorMessage(err.message));
   };
   return (
     <div>
       <Helmet>
         <title>Sign Up | Chill Gamer</title>
       </Helmet>
-      <div className="flex justify-center items-center py-14 px-3">
+      <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
           {/* form div */}
           <div className="bg-white w-full md:w-[50%] p-4 shrink-0 shadow-2xl">
@@ -159,7 +173,7 @@ const Register = () => {
                 </span>
               </div>
               <div className="form-control mt-6">
-                <button className="btn shadow-2xl text-white bg-gradient-to-b from-[#f948b2] to-[#8758f1]">
+                <button className="btn shadow-2xl text-white bg-gradient-to-b from-blue-500 to-blue-800">
                   Register
                 </button>
               </div>
@@ -171,7 +185,7 @@ const Register = () => {
             </form>
           </div>
           {/* right info div */}
-          <div className="flex items-center justify-center text-white bg-gradient-to-b from-[#f948b2] to-[#8758f1] w-full md:w-[50%] py-7 shadow-2xl">
+          <div className="flex items-center justify-center text-white bg-gradient-to-b from-blue-500 to-blue-800 w-full md:w-[50%] py-7 shadow-2xl">
             <div className="text-center text-white">
               <h1 className="text-3xl font-bold mb-2">Welcome to Register</h1>
               <p className="mb-4">Already Have an Account?</p>

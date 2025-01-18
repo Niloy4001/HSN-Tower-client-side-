@@ -52,7 +52,7 @@ const axiosSecure = useAxiosSecure()
         {/* Statistics Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-blue-700">Total Rooms</h2>
+            <h2 className="text-lg font-semibold text-blue-700">Total Apartments</h2>
             <p className="text-3xl font-bold text-blue-900">{info?.totalApartments } </p>
           </div>
           <div className="bg-green-50 p-6 rounded-lg shadow-md">
