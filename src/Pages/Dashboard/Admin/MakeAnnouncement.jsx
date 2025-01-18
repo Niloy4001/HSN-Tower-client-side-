@@ -40,6 +40,7 @@ const MakeAnnouncement = () => {
             Title
           </label>
           <input
+          required
             type="text"
             name="title"
             className="w-full p-3 border rounded-md bg-gray-100 text-gray-500"
@@ -56,6 +57,7 @@ const MakeAnnouncement = () => {
             Description
           </label>
           <input
+          required
             type="text"
             name="description"
             className="w-full p-3 border rounded-md bg-gray-100 text-gray-500"
