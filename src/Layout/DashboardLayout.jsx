@@ -3,6 +3,7 @@ import DashboardContent from "../Pages/Dashboard/DashboardContent";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { RiArchiveDrawerFill } from "react-icons/ri";
 import useRole from "../hooks/useRole";
+import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -127,6 +128,7 @@ const DashboardLayout = () => {
       <div className="w-3/4 p-10">
         <Outlet></Outlet>
       </div> */}
+    <Toaster></Toaster>
     </div>
   );
 };
