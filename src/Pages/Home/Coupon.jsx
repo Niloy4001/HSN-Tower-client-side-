@@ -4,28 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Components/Common/Spinner";
 
 const Coupon = () => {
-
-
   const axiosPublic = useAxiosPublic();
-    const {
-      isPending,
-      isError,
-      data: coupons,
-      error,
-      refetch,
-    } = useQuery({
-      queryKey: ["coupon","public"],
-      queryFn: async () => {
-        const { data } = await axiosPublic.get(
-          `/coupons`
-        );
-        return data;
-      },
-    });
+  const {
+    isPending,
+    isError,
+    data: coupons,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["coupon", "public"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/coupons`);
+      return data;
+    },
+  });
 
-    if (isPending) {
-        return <Spinner></Spinner>
-    }
+  if (isPending) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div className="w-[90%] mx-auto">
@@ -33,24 +29,39 @@ const Coupon = () => {
         Collect Coupon
       </h1>
 
-      {
-        coupons.length > 0 && <div className=" justify-center items-center  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        {coupons.map(coupon=> <div key={coupon._id} className="flex bg-gradient-to-b from-blue-500 to-blue-800 text-black rounded-lg shadow-lg">
-          {/* Left Section */}
-          <div className="flex flex-col justify-center items-start p-6 w-1/2 border-r border-dashed border-gray-400">
-            <h1 className="text-3xl font-bold">{coupon?.discountPercentage}% OFF</h1>
-            <p className="mt-4 text-sm">{coupon?.couponDescription}</p>
-          </div>
+      {coupons.length > 0 && (
+        <div className=" justify-center items-center  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {coupons.map((coupon) => (
+            <div
+              key={coupon._id}
+              className="flex bg-gradient-to-b from-blue-500 to-blue-800 text-black rounded-lg shadow-lg"
+            >
+              {/* Left Section */}
+              <div className="flex flex-col justify-center items-start p-6 w-1/2 border-r border-dashed border-gray-400">
+                <h1 className="text-3xl font-bold">
+                  {coupon?.discountPercentage}% OFF
+                </h1>
+                <p className="mt-4 text-sm">{coupon?.couponDescription}</p>
+              </div>
 
-          {/* Right Section */}
-          <div className="flex flex-col justify-center items-center p-6 w-1/2">
-            <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2>
-            <p className="mt-2 text-sm">Coupon Code</p>
-          </div>
-        </div>)}
-      </div>
-      }
+              {/* Right Section */}
+              <div className="flex flex-col justify-center items-center p-6 w-1/2 relative">
+                {coupon?.availability ? (
+                  <div className="badge badge-ghost text-green-600 absolute top-[8px] right-[6px]">
+                    Available
+                  </div>
+                ) : (
+                  <div className="badge badge-ghost text-red-500 absolute top-[8px] right-[6px]">
+                    Unavailable
+                  </div>
+                )}
+                <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2>
+                <p className="mt-2 text-sm">Coupon Code</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

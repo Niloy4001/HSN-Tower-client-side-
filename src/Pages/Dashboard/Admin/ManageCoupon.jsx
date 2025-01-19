@@ -17,7 +17,7 @@ const ManageCoupon = () => {
   } = useQuery({
     queryKey: ["coupon", "public"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/coupons`);
+      const { data } = await axiosSecure.get(`/coupons`);
       return data;
     },
   });
@@ -27,7 +27,7 @@ const ManageCoupon = () => {
   }
 
   // handle submit
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const couponCode = e.target.couponCode.value;
@@ -37,15 +37,24 @@ const ManageCoupon = () => {
     const couponInfo = { couponCode, discountPercentage, couponDescription };
     console.log(couponInfo);
 
-
-    const { data } = await axiosSecure.post(`/coupons`,couponInfo);
+    const { data } = await axiosSecure.post(`/coupons`, couponInfo);
     if (data.insertedId) {
-        toast.success("Coupon Saved !!!")
-        refetch()
+      toast.success("Coupon Saved !!!");
+      refetch();
     }
 
     document.getElementById("my_modal_5").close();
   };
+
+  const handleAvailability =async (id) =>{
+    const {data } =await axiosSecure.patch(`/changeAvailability/${id}`)
+    if (data?.modifiedCount === 1) {
+      toast.success('Availability Changed')
+      refetch()
+    }
+    // console.log(id);
+    
+  }
 
   return (
     <div>
@@ -59,7 +68,9 @@ const ManageCoupon = () => {
                 <tr>
                   <th>Discount</th>
                   <th>Code</th>
+                  <th>Availablity</th>
                   <th>Description</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,7 +79,20 @@ const ManageCoupon = () => {
                   <tr key={coupon._id}>
                     <th>{coupon?.discountPercentage} % OFF</th>
                     <td>{coupon?.couponCode}</td>
-                    <th>{coupon?.couponDescription}</th>
+                    {/* <td>
+                      {coupon?.availability ? (
+                        <span className="badge badge-ghost text-green-600 absolute top-[8px] right-[6px]">
+                          Available
+                        </span>
+                      ) : (
+                        <span className="badge badge-ghost text-red-500 absolute top-[8px] right-[6px]">
+                          Unavailable
+                        </span>
+                      )}
+                    </td> */}
+                    <td>{coupon?.availability ? <p className="text-green-600">Available</p> : <p className="text-red-500">Unavailable</p>}</td>
+                    <td>{coupon?.couponDescription}</td>
+                    <td><button className="btn btn-xs" onClick={()=>handleAvailability(coupon._id)}>Change Availability</button></td>
                   </tr>
                 ))}
               </tbody>
