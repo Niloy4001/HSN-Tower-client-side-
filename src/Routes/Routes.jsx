@@ -21,6 +21,7 @@ import ManageCoupon from "../Pages/Dashboard/Admin/ManageCoupon";
 import AdminProfile from "../Pages/Profile/AdminProfile";
 import MemberProfile from "../Pages/Profile/MemberProfile";
 import UserProfile from "../Pages/Profile/UserProfile";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path:"*",
+    element:<ErrorPage></ErrorPage>
   },
 ]);
 

@@ -43,6 +43,7 @@ const PaymentHistory = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Transaction Id</th>
+              <th>Amount</th>
               <th>Date</th>
               <th>Rent of Month</th>
             </tr>
@@ -54,6 +55,7 @@ const PaymentHistory = () => {
                 <th>{history.name}</th>
                 <td>{history.email}</td>
                 <td>{history.transactionId}</td>
+                <td>{history.amount}</td>
                 <td>{history.date}</td>
                 <td>{history.month}</td>
               </tr>)
