@@ -25,7 +25,7 @@ const MemberProfile = () => {
 
 
 
-  console.log(info);
+  // console.log(info);
   
 
   if (isPending) {

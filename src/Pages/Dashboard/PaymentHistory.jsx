@@ -23,7 +23,7 @@ const PaymentHistory = () => {
     },
   });
 
-  console.log(histories);
+  // console.log(histories);
   
   
 

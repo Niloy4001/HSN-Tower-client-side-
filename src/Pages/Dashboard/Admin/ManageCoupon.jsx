@@ -35,7 +35,7 @@ const ManageCoupon = () => {
     const couponDescription = e.target.couponDescription.value;
 
     const couponInfo = { couponCode, discountPercentage, couponDescription };
-    console.log(couponInfo);
+    // console.log(couponInfo);
 
     const { data } = await axiosSecure.post(`/coupons`, couponInfo);
     if (data.insertedId) {

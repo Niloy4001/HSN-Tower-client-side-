@@ -24,7 +24,7 @@ const AgreementRequest = () => {
   if (isPending) {
     return <Spinner></Spinner>;
   }
-  console.log(agreements);
+  // console.log(agreements);
 
 
 
@@ -32,14 +32,14 @@ const AgreementRequest = () => {
   const handleAccept = async(email)=>{
     try {
         const { data} =await axiosSecure.get(`/changeStatus/${email}`)
-        console.log(data);
+        // console.log(data);
         refetch()
         if (data.result.modifiedCount || data.updatedRole.modifiedCount) {
             toast.success("User Accepted to Member")
         }
         
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         
     }
   }
@@ -49,11 +49,11 @@ const AgreementRequest = () => {
     try {
         const { data} =await axiosSecure.delete(`/changeStatus/${email}`)
         toast.custom(<p className="text-orange-400 font-bold">User Rejected</p>)
-        console.log(data);
+        // console.log(data);
         refetch()
         
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         
     }
   }

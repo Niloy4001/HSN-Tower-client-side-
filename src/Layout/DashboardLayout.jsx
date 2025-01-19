@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = () => {
   const { role } = useRole();
-  console.log(role);
+  // console.log(role);
 
   return (
     <div className="flex min-h-screen">

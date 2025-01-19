@@ -10,7 +10,7 @@ const MakeAnnouncement = () => {
         const title = e.target.title.value
         const description = e.target.description.value
         const announcement = {title, description}
-        console.log(announcement);
+        // console.log(announcement);
 
         try {
             const {data} = await axiosSecure.post(`/addAnnouncement`,announcement)
@@ -22,7 +22,7 @@ const MakeAnnouncement = () => {
              
         } catch (error) {
             toast.error(`${error.message}`)
-            console.log(error);
+            // console.log(error);
             
         }
         

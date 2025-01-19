@@ -108,7 +108,7 @@ const Apartment = () => {
     apartment.UserName = user?.displayName
     apartment.UserEmail = user?.email
     apartment.status = "Pending"
-    console.log(apartment);
+    // console.log(apartment);
 
     const {data} = await axiosSecure.post('/agreement',apartment)
     if (data.acknowledged) {

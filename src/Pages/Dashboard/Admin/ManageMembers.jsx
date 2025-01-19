@@ -27,7 +27,7 @@ const ManageMembers = () => {
     if (isPending) {
         return <Spinner></Spinner>
     }
-  console.log(members);
+  // console.log(members);
 
   const handleRemove = async(id,email) =>{
     try{
@@ -38,7 +38,7 @@ const ManageMembers = () => {
       }
       
     }catch(error){
-      console.log(error);
+      // console.log(error);
       
     }
    

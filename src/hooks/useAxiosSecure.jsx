@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:4000"
+  baseURL: "https://hsn-tower-server.vercel.app"
 });
 
 const useAxiosSecure = () => {
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
     // console.log(localStorage.getItem('access-token'));
     axiosSecure.interceptors.request.use(
       function (config) {
-        console.log('request sent')
+        // console.log('request sent')
         const token = localStorage.getItem('access-token')
         config.headers.authorization = `Bearer ${token}`
         
@@ -28,7 +28,7 @@ const useAxiosSecure = () => {
       },
       function (error) {
         // Do something with request error
-        console.log('request does not sent');
+        // console.log('request does not sent');
         
         return Promise.reject('error from secure post request',error);
       }
@@ -40,19 +40,19 @@ const useAxiosSecure = () => {
     // console.log(localStorage.getItem('access-token'));
     axiosSecure.interceptors.response.use(
       (res) => {
-        console.log('response come in');
+        // console.log('response come in');
         
         return res;
       },
       (error) => {
-        console.log('response can not come in');
+        // console.log('response can not come in');
         
         // ('error from hook', error);
         if (error.response.status === 401 || error.response.status === 403) {
           logOut();
           navigate("/login");
         }
-        console.log('erore from response request', error);
+        // console.log('erore from response request', error);
         
       }
     );

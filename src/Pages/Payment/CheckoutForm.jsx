@@ -22,7 +22,7 @@ const CheckoutForm = () => {
       .post("/create-payment-intent", { price: paymentInfo?.rent, discount: paymentInfo?.discount })
       .then((res) => {
         setClientSecret(res.data.clientSecret);
-        console.log(res.data.clientSecret);
+        // console.log(res.data.clientSecret);
       });
   }, [paymentInfo, axiosSecure]);
 
@@ -44,10 +44,10 @@ const CheckoutForm = () => {
       card,
     });
     if (error) {
-      console.log("[error]", error);
+      // console.log("[error]", error);
       toast.error(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
       toast.success(
         `Your Payment successfull , Transaction Id : ${paymentMethod.id}`
       );
@@ -66,7 +66,7 @@ const CheckoutForm = () => {
       });
 
     if (confirmError) {
-      console.log("confirm error", confirmError);
+      // console.log("confirm error", confirmError);
       setError(confirmError);
       toast.error(`${confirmError.message}`);
     } else {
@@ -79,10 +79,10 @@ const CheckoutForm = () => {
         transactionId: paymentIntent.id,
       };
       const { data } = axiosSecure.post("/paymentsHistory", history);
-      console.log(data);
+      // console.log(data);
 
       setSuccess(`Payment Successfull , Txid:${paymentIntent.id}`);
-      console.log("paymentIntent", paymentIntent);
+      // console.log("paymentIntent", paymentIntent);
     }
   };
 
@@ -91,7 +91,7 @@ const CheckoutForm = () => {
   const handleApplyCoupon =async (e) =>{
     e.preventDefault()
     const value = e.target.couponCode.value 
-    console.log(value);
+    // console.log(value);
     try {
       const {data} = await axiosSecure.post('/findCoupon', { coupon :value})
       if (data.message === "available") {
@@ -99,9 +99,9 @@ const CheckoutForm = () => {
         // console.log(paymentInfo);
         setPaymentInfo({...paymentInfo,discount:data.discount })
 
-        console.log(paymentInfo);
+        // console.log(paymentInfo);
         
-        console.log(data);
+        // console.log(data);
         
       }  
       if (data.message === "Invalid Coupon" || data.message === "Unavailable") {

@@ -24,7 +24,7 @@ const Announcement = () => {
   if (isPending) {
     return <Spinner></Spinner>;
   }
-  console.log(announcements);
+  // console.log(announcements);
 
   return (
     <div>

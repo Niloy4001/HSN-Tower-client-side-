@@ -21,7 +21,7 @@ const axiosSecure = useAxiosSecure()
     },
   });
 
-  console.log(info);
+  // console.log(info);
   
 
   if (isPending) {
