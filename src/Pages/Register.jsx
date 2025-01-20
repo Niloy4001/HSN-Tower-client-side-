@@ -5,7 +5,7 @@ import { RiEyeLine } from "react-icons/ri";
 import { HiOutlineEyeOff } from "react-icons/hi";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
-import { Helmet } from "react-helmet-async";
+
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
@@ -97,9 +97,7 @@ const Register = () => {
   };
   return (
     <div>
-      <Helmet>
-        <title>Sign Up </title>
-      </Helmet>
+    
       <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
           {/* form div */}

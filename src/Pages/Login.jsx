@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineEyeOff } from "react-icons/hi";
 import { RiEyeLine } from "react-icons/ri";
 
-import { Helmet } from "react-helmet-async";
+
 import { AuthContext } from "../Context/AuthProvider";
 import toast from "react-hot-toast";
 
@@ -54,9 +54,7 @@ const Login = () => {
   // };
   return (
     <div className="">
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
+      
       <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
           {/* form div */}

@@ -46,7 +46,7 @@ const ManageMembers = () => {
   
 
   return (
-    <div>ManageMembers
+    <div><h2 className="text-2xl font-bold mb-6">Manage Members</h2>
 
 {
     members.length> 0 && 

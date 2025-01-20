@@ -58,7 +58,7 @@ const ManageCoupon = () => {
 
   return (
     <div>
-      ManageCoupon
+     <h2 className="text-2xl font-bold mb-6">Manage Coupons</h2>
       {coupons.length > 0 && (
         <>
           <div className="overflow-x-auto">

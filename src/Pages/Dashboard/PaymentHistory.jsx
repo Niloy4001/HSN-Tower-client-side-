@@ -32,7 +32,7 @@ const PaymentHistory = () => {
   }
   
   return (
-    <div>PaymentHistory
+    <div><h2 className="text-2xl font-bold mb-6">Your Payment History</h2>
 
       {
         histories.length > 0 && <div className="overflow-x-auto">

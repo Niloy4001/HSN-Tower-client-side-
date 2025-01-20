@@ -60,7 +60,7 @@ const AgreementRequest = () => {
 
   return (
     <div>
-      AgreementRequest
+      <h2 className="text-2xl font-bold mb-6">Agreement Requests</h2>
       <div className="space-y-5">
         {agreements.length > 0 &&
           agreements.map((agreement) => (
