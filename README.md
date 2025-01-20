@@ -67,7 +67,6 @@
 
 - **UI Enhancements:**  
   - `react-copy-to-clipboard`: `^5.1.0`  
-  - `react-helmet-async`: `^2.0.5`  
   - `react-hot-toast`: `^2.5.1`  
   - `react-icons`: `^5.4.0`  
   - `react-multi-carousel`: `^2.8.5`  
