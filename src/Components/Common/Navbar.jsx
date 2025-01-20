@@ -13,6 +13,7 @@ const Navbar = () => {
   );
   return (
     <div>
+       <Link to={"/"} className="btn btn-ghost text-xl items-center md:hidden flex"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
       <div className="navbar w-[90%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -39,7 +40,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="btn btn-ghost text-xl flex items-center"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
+          <Link to={"/"} className="btn btn-ghost text-xl items-center md:flex hidden"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
