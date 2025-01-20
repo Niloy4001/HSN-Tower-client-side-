@@ -2,6 +2,8 @@ import React from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Components/Common/Spinner";
+import CopyToClipboard from "react-copy-to-clipboard";
+import toast from "react-hot-toast";
 
 const Coupon = () => {
   const axiosPublic = useAxiosPublic();
@@ -34,7 +36,7 @@ const Coupon = () => {
           {coupons.map((coupon) => (
             <div
               key={coupon._id}
-              className="flex bg-gradient-to-b from-blue-500 to-blue-800 text-black rounded-lg shadow-lg"
+              className="flex bg-gradient-to-b from-blue-500 to-blue-800 text-gray-300 rounded-lg shadow-lg"
             >
               {/* Left Section */}
               <div className="flex flex-col justify-center items-start p-6 w-1/2 border-r border-dashed border-gray-400">
@@ -55,7 +57,10 @@ const Coupon = () => {
                     Unavailable
                   </div>
                 )}
-                <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2>
+                <CopyToClipboard text={coupon?.couponCode} className="text-xl font-semibold tooltip" data-tip="click to copy" onCopy={() => toast.success('copied')} >
+                  <button>{coupon?.couponCode}</button>
+                </CopyToClipboard>
+                {/* <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2> */}
                 <p className="mt-2 text-sm">Coupon Code</p>
               </div>
             </div>

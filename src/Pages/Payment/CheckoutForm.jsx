@@ -67,7 +67,7 @@ const CheckoutForm = () => {
 
     if (confirmError) {
       // console.log("confirm error", confirmError);
-      setError(confirmError);
+      setError(confirmError.message);
       toast.error(`${confirmError.message}`);
     } else {
       const history = {

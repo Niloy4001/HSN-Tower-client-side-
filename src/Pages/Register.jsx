@@ -98,7 +98,7 @@ const Register = () => {
   return (
     <div>
       <Helmet>
-        <title>Sign Up | Chill Gamer</title>
+        <title>Sign Up </title>
       </Helmet>
       <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">

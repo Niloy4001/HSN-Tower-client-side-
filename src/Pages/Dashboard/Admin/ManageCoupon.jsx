@@ -17,7 +17,7 @@ const ManageCoupon = () => {
   } = useQuery({
     queryKey: ["coupon", "public"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/coupons`);
+      const { data } = await axiosSecure.get(`/couponsForAdmin`);
       return data;
     },
   });

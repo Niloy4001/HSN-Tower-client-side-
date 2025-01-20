@@ -1,0 +1,108 @@
+[
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 1,
+      "blockName": "A",
+      "apartmentNo": "A-101",
+      "rent": 15000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 2,
+      "blockName": "A",
+      "apartmentNo": "A-201",
+      "rent": 16000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/ZYyJZby/3d-rendering-modern-dining-room-living-room-with-luxury-decor.jpg",
+      "floorNo": 3,
+      "blockName": "A",
+      "apartmentNo": "A-301",
+      "rent": 17000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 1,
+      "blockName": "B",
+      "apartmentNo": "B-101",
+      "rent": 15000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/ZYyJZby/3d-rendering-modern-dining-room-living-room-with-luxury-decor.jpg",
+      "floorNo": 2,
+      "blockName": "B",
+      "apartmentNo": "B-201",
+      "rent": 16000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 3,
+      "blockName": "B",
+      "apartmentNo": "B-301",
+      "rent": 17000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 1,
+      "blockName": "C",
+      "apartmentNo": "C-101",
+      "rent": 15000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/ZYyJZby/3d-rendering-modern-dining-room-living-room-with-luxury-decor.jpg",
+      "floorNo": 2,
+      "blockName": "C",
+      "apartmentNo": "C-201",
+      "rent": 16000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 3,
+      "blockName": "C",
+      "apartmentNo": "C-301",
+      "rent": 17000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/n39qRT8/modern-studio-apartment-design-with-bedroom-living-space.jpg",
+      "floorNo": 4,
+      "blockName": "A",
+      "apartmentNo": "A-401",
+      "rent": 18000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 5,
+      "blockName": "A",
+      "apartmentNo": "A-501",
+      "rent": 19000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/JtMhjpM/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table.jpg",
+      "floorNo": 4,
+      "blockName": "B",
+      "apartmentNo": "B-401",
+      "rent": 18000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/ZYyJZby/3d-rendering-modern-dining-room-living-room-with-luxury-decor.jpg",
+      "floorNo": 5,
+      "blockName": "B",
+      "apartmentNo": "B-501",
+      "rent": 19000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/n39qRT8/modern-studio-apartment-design-with-bedroom-living-space.jpg",
+      "floorNo": 4,
+      "blockName": "C",
+      "apartmentNo": "C-401",
+      "rent": 18000
+    },
+    {
+      "apartmentImage": "https://i.ibb.co.com/n39qRT8/modern-studio-apartment-design-with-bedroom-living-space.jpg",
+      "floorNo": 5,
+      "blockName": "C",
+      "apartmentNo": "C-501",
+      "rent": 19000
+    }
+  ]
+  

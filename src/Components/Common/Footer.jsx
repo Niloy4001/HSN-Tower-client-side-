@@ -10,7 +10,7 @@ const Footer = () => {
           <p>
           <Link to={"/"} className="btn btn-ghost text-xl">HSN Tower</Link>
             <br />
-            Providing reliable tech since 1992
+            Providing reliable service since 1992
           </p>
         </aside>
         <nav>

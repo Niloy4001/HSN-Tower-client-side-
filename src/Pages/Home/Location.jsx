@@ -9,15 +9,15 @@ const Location = () => {
             {/* Left Content */}
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-4">
-               Hlw everyone!
+              Prime Location in the Heart of the City
               </h2>
               <p className="text-gray-300 mb-6">
                
-                I am a simple individual who believes in speaking only when necessary. I am deeply committed to completing my tasks with sincerity and dedication, often willing to make significant sacrifices to achieve my goals.
+              Our residential complex is situated in a highly sought-after area that perfectly balances urban convenience and serene living. Located in the heart of the city, it offers seamless access to all essential amenities. Top-rated schools, hospitals, and shopping centers are just a short drive away. Public transportation is easily accessible, ensuring hassle-free commutes.
                 <br />
-                While I don't have many hobbies, I enjoy listening to audiobooks on YouTube, running in the rain, and practicing calisthenics when I feel energetic. I may not have a large circle of friends, but the ones I do have mean the world to me, and I am willing to go to great lengths (within halal boundaries) to support them.
+                The neighborhood is vibrant yet peaceful, with tree-lined streets and well-maintained surroundings. Enjoy nearby parks, cafes, and recreational spots for a balanced lifestyle. This prime location guarantees not just a home but an enhanced living experience that combines comfort and connectivity.
                 <br />
-                That's all about me.
+            
               </p>
               
             </div>

@@ -22,6 +22,7 @@ import AdminProfile from "../Pages/Profile/AdminProfile";
 import MemberProfile from "../Pages/Profile/MemberProfile";
 import UserProfile from "../Pages/Profile/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -52,17 +53,17 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardContent></DashboardContent>,
+        element: <PrivateRoute><DashboardContent></DashboardContent></PrivateRoute>,
       },
       {
         path: "/dashboard/announcements",
-        element: <Announcement></Announcement>,
+        element: <PrivateRoute><Announcement></Announcement></PrivateRoute>,
       },
       {
         path: "/dashboard/makePayment",
         element: (
           <MemberPrivateRoute>
-            <MakePayment></MakePayment>
+            <PrivateRoute><MakePayment></MakePayment></PrivateRoute>
           </MemberPrivateRoute>
         ),
       },
@@ -70,7 +71,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment",
         element: (
           <MemberPrivateRoute>
-            <Payment></Payment>
+           <PrivateRoute> <Payment></Payment></PrivateRoute>
           </MemberPrivateRoute>
         ),
       },
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
         path: "/dashboard/paymentHistory",
         element: (
           <MemberPrivateRoute>
-            <PaymentHistory></PaymentHistory>
+            <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
           </MemberPrivateRoute>
         ),
       },
@@ -86,7 +87,7 @@ const router = createBrowserRouter([
         path: "/dashboard/manageMembers",
         element: (
           <AdminPrivateRoute>
-            <ManageMembers></ManageMembers>
+            <PrivateRoute><ManageMembers></ManageMembers></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },
@@ -94,7 +95,7 @@ const router = createBrowserRouter([
         path: "/dashboard/makeAnnouncement",
         element: (
           <AdminPrivateRoute>
-            <MakeAnnouncement></MakeAnnouncement>
+            <PrivateRoute><MakeAnnouncement></MakeAnnouncement></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },
@@ -102,7 +103,7 @@ const router = createBrowserRouter([
         path: "/dashboard/agreementRequests",
         element: (
           <AdminPrivateRoute>
-            <AgreementRequest></AgreementRequest>
+            <PrivateRoute><AgreementRequest></AgreementRequest></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },
@@ -110,7 +111,7 @@ const router = createBrowserRouter([
         path: "/dashboard/manageCoupons",
         element: (
           <AdminPrivateRoute>
-            <ManageCoupon></ManageCoupon>
+            <PrivateRoute><ManageCoupon></ManageCoupon></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },
@@ -118,7 +119,7 @@ const router = createBrowserRouter([
         path: "/dashboard/adminProfile",
         element: (
           <AdminPrivateRoute>
-            <AdminProfile></AdminProfile>
+            <PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },
@@ -126,7 +127,7 @@ const router = createBrowserRouter([
         path: "/dashboard/membersProfile",
         element: (
           <MemberPrivateRoute>
-            <MemberProfile></MemberProfile>
+            <PrivateRoute><MemberProfile></MemberProfile></PrivateRoute>
           </MemberPrivateRoute>
         ),
       },

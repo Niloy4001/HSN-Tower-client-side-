@@ -17,7 +17,7 @@ const useRole = () => {
   } = useQuery({
     queryKey: ["role",user?.email || "anonymous"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/checkRole/${user?.email}`);
+      const { data } = await axiosSecure.get(`/checkRole/${user?.email}`);
       return data.role;
     },
   });

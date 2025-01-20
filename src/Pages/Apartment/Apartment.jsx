@@ -126,7 +126,7 @@ const Apartment = () => {
   return (
     <div className="w-[90%] mx-auto">
      <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">
-        Collect Coupon
+       Explore All Apartment
       </h1>
       {/* filter */}
       <div className="flex justify-center py-6 mb-4">

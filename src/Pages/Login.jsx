@@ -7,6 +7,7 @@ import { RiEyeLine } from "react-icons/ri";
 
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../Context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { logInByGoogle, logInByEmailPassword, user, setForgotEmail } =
@@ -24,6 +25,7 @@ const Login = () => {
     setErrorMessage("");
     logInByGoogle()
       .then((res) => {
+        toast.success("Log In successfull")
         navigate(state ? `${state}` : "/");
       })
       .catch((err) => setErrorMessage(err.message));
@@ -44,16 +46,16 @@ const Login = () => {
   };
 
   // handle forgot
-  const handleForgot = () => {
-    setForgotEmail("");
-    const email = emailRef.current.value;
-    email && setForgotEmail(email);
-    navigate("/auth/forgot");
-  };
+  // const handleForgot = () => {
+  //   setForgotEmail("");
+  //   const email = emailRef.current.value;
+  //   email && setForgotEmail(email);
+  //   navigate("/auth/forgot");
+  // };
   return (
     <div className="">
       <Helmet>
-        <title>Login | Chill Gamer</title>
+        <title>Login</title>
       </Helmet>
       <div className="flex justify-center items-center py-14 min-h-screen px-3">
         <div className="flex flex-col-reverse md:flex-row w-full md:w-[80%]  lg:w-[60%] ">
