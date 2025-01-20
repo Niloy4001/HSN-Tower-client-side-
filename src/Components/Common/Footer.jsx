@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from '../../assets/logo.png'
 const Footer = () => {
   return (
     <div className="pt-20">
       <footer className="footer bg-gradient-to-b from-blue-500 to-blue-800 text-neutral-content p-10">
         <aside>
+          <div>
+            <img src={logo} alt="" className="w-[130px] h-[130px]" />
+          </div>
         
           <p>
           <Link to={"/"} className="btn btn-ghost text-xl">HSN Tower</Link>
