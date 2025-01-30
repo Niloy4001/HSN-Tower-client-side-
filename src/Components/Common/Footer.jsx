@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <div className="pt-20">
@@ -9,9 +9,11 @@ const Footer = () => {
           <div>
             <img src={logo} alt="" className="w-[130px] h-[130px]" />
           </div>
-        
+
           <p>
-          <Link to={"/"} className="btn btn-ghost text-xl">HSN Tower</Link>
+            <Link to={"/"} className="btn btn-ghost text-xl">
+              HSN Tower
+            </Link>
             <br />
             Providing reliable service since 1992
           </p>
