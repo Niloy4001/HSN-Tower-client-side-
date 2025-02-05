@@ -1,6 +1,3 @@
-Here's a structured and professional **README.md** for your project:
-
-```markdown
 # HSN Tower
 
 ## Overview
@@ -36,7 +33,6 @@ To set up the project locally, follow these steps:
    ```sh
    git clone https://github.com/your-username/hsn-tower.git
    cd hsn-tower
-   ```
 
 2. **Install Dependencies**  
    ```sh
