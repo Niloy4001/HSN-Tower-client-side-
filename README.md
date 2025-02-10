@@ -103,9 +103,3 @@ Contributions are welcome! To contribute:
 3. Commit your changes.
 4. Push to the branch and create a Pull Request.
 
-## License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-```
-
-This README covers all essential details about your project. Let me know if you need any changes! 🚀
