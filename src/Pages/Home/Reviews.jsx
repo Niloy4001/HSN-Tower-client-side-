@@ -83,7 +83,7 @@ const Reviews = () => {
         >
           {reviews.map((review, index) => (
             <SwiperSlide className="mb-10">
-              <div className="max-w-sm bg-white shadow-lg rounded-lg p-4 mb-4 relative">
+              <div className="max-w-sm h-52 bg-white shadow-lg rounded-lg p-4 mb-4 relative">
                 <div className="flex items-start">
                   <img
                     src={review.image}
@@ -104,7 +104,7 @@ const Reviews = () => {
         </Swiper>
       </div>
       {/* small screen review */}
-      <div className="md:hidden">
+      {/* <div className="md:hidden">
          <Swiper
         effect={'cards'}
         grabCursor={true}
@@ -112,8 +112,8 @@ const Reviews = () => {
         className="mySwiper"
       >
         {reviews.map((review, index) => (
-            <SwiperSlide className="mb-10">
-              <div className="max-w-sm bg-white shadow-lg rounded-lg p-4 mb-4 relative">
+            <SwiperSlide className="mb-10 slide">
+              <div className=" bg-white shadow-lg rounded-lg  ">
                 <div className="flex items-start">
                   <img
                     src={review.image}
@@ -132,7 +132,38 @@ const Reviews = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-      </div>
+      </div> */}
+       <div className="md:hidden">
+       <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        {reviews.map((review, index) => (
+            <SwiperSlide className="mb-10 slide">
+              <div className="max-w-sm h-52 p-4 bg-white shadow-lg rounded-lg  relative">
+                <div className="flex items-start">
+                  <img
+                    src={review.image}
+                    alt="User"
+                    className="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div className=" mb-2">
+                    <p className="font-bold text-gray-900">{review.name}</p>
+                    <p className="text-sm text-gray-500">{review.time}</p>
+                  </div>
+                </div>
+                <div className="bg-gray-100 p-3 rounded-lg shadow-inner">
+                  <p className="text-gray-700">{review.review}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+       
+      </Swiper>
+       </div>
     </div>
   );
 };
