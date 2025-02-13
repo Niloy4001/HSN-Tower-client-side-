@@ -90,7 +90,7 @@ const Reviews = () => {
                     alt="User"
                     className="w-12 h-12 rounded-full mr-4"
                   />
-                  <div className="ml-16 mb-2">
+                  <div className=" mb-2">
                     <p className="font-bold text-gray-900">{review.name}</p>
                     <p className="text-sm text-gray-500">{review.time}</p>
                   </div>
@@ -112,7 +112,7 @@ const Reviews = () => {
         className="mySwiper"
       >
         {reviews.map((review, index) => (
-            <SwiperSlide className="mb-10 px-4">
+            <SwiperSlide className="mb-10">
               <div className="max-w-sm bg-white shadow-lg rounded-lg p-4 mb-4 relative">
                 <div className="flex items-start">
                   <img

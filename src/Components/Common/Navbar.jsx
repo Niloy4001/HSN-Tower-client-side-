@@ -9,6 +9,7 @@ const Navbar = () => {
     <>
       <NavLink className="font-medium mx-4" to={"/"}>Home</NavLink>
       <NavLink className="font-medium mx-4" to={"/apartment"}>Apartment</NavLink>
+      <NavLink className="font-medium mx-4" to={"/contact"}>Contact</NavLink>
     </>
   );
   return (

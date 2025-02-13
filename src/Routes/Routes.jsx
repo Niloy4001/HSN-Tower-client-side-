@@ -23,6 +23,7 @@ import MemberProfile from "../Pages/Profile/MemberProfile";
 import UserProfile from "../Pages/Profile/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import Contact from "../Pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/apartment",
         element: <Apartment></Apartment>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
     ],
   },
