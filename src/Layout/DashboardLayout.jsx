@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardContent from "../Pages/Dashboard/DashboardContent";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { RiArchiveDrawerFill } from "react-icons/ri";
 import useRole from "../hooks/useRole";
@@ -7,63 +6,81 @@ import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = () => {
   const { role } = useRole();
-  // console.log(role);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-[#F4F6F9]">
+      {/* Drawer for Sidebar */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          {/* Page content here */}
+        <div className="drawer-content flex flex-col">
+          {/* Mobile Toggle Button */}
           <label
             htmlFor="my-drawer-2"
-            className="btn bg-[#1A3D7C] btn-primary drawer-button lg:hidden"
+            className="btn bg-[#1A3D7C] text-white drawer-button lg:hidden mt-4 ml-4"
           >
-            <RiArchiveDrawerFill /> Open Dashboard
+            <RiArchiveDrawerFill className="mr-2" /> Open Dashboard
           </label>
-          <div className="flex ml-4 justify-center ">
-          <Link className="btn  bg-[#1A3D7C]" to={"/"}>
-          Go to Home
-          </Link>
+
+          {/* Home Button */}
+          <div className="flex justify-end p-4">
+            <Link
+              to="/"
+              className="btn bg-[#1A3D7C] text-white hover:bg-[#0A1E3D]"
+            >
+              Go to Home
+            </Link>
           </div>
-          <div className="w-full p-10">
-            <Outlet></Outlet>
+
+          {/* Main Content */}
+          <div className="w-full p-6">
+            <Outlet />
           </div>
         </div>
+
+        {/* Sidebar */}
         <div className="drawer-side">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            {/* Sidebar content here */}
+          <ul className="menu bg-[#1A3D7C] text-white min-h-full w-80 p-4">
+            {/* Sidebar Heading */}
             <li>
-              <h2 className="text-2xl font-bold mb-8 text-center">Dashboard</h2>
+              <h2 className="text-2xl font-bold mb-8 text-center text-[#F8B400]">
+                Dashboard
+              </h2>
             </li>
+
+            {/* User Links */}
             {role === "User" && (
               <>
                 <li>
-                  <NavLink to="/dashboard/userProfile" className="hover:text-gray-300">
+                  <NavLink
+                    to="/dashboard/userProfile"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
+                  >
                     My Profile
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/dashboard/announcements"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Announcements
                   </NavLink>
                 </li>
               </>
             )}
+
+            {/* Member Links */}
             {role === "Member" && (
               <>
-              <li>
+                <li>
                   <NavLink
                     to="/dashboard/membersProfile"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     My Profile
                   </NavLink>
@@ -71,7 +88,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/makePayment"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Make Payment
                   </NavLink>
@@ -79,7 +96,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/paymentHistory"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Payment History
                   </NavLink>
@@ -87,19 +104,21 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/announcements"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Announcements
                   </NavLink>
                 </li>
               </>
             )}
+
+            {/* Admin Links */}
             {role === "Admin" && (
               <>
                 <li>
                   <NavLink
                     to="/dashboard/adminProfile"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Admin Profile
                   </NavLink>
@@ -107,7 +126,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manageMembers"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Manage Members
                   </NavLink>
@@ -115,7 +134,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/makeAnnouncement"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Make Announcement
                   </NavLink>
@@ -123,15 +142,15 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/agreementRequests"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
-                    Agreement Request
+                    Agreement Requests
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/dashboard/manageCoupons"
-                    className="hover:text-gray-300"
+                    className="hover:bg-[#0A1E3D] rounded-lg"
                   >
                     Manage Coupons
                   </NavLink>
@@ -142,11 +161,8 @@ const DashboardLayout = () => {
         </div>
       </div>
 
-      {/* Main Content
-      <div className="w-3/4 p-10">
-        <Outlet></Outlet>
-      </div> */}
-    <Toaster></Toaster>
+      {/* Toast Notifications */}
+      <Toaster />
     </div>
   );
 };

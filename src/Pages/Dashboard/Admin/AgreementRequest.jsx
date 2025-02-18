@@ -22,97 +22,92 @@ const AgreementRequest = () => {
   });
 
   if (isPending) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
-  // console.log(agreements);
 
-
-
-// handle accept
-  const handleAccept = async(email)=>{
+  const handleAccept = async (email) => {
     try {
-        const { data} =await axiosSecure.get(`/changeStatus/${email}`)
-        // console.log(data);
-        refetch()
-        if (data.result.modifiedCount || data.updatedRole.modifiedCount) {
-            toast.success("User Accepted to Member")
-        }
-        
+      const { data } = await axiosSecure.get(`/changeStatus/${email}`);
+      refetch();
+      if (data.result.modifiedCount || data.updatedRole.modifiedCount) {
+        toast.success("User Accepted to Member");
+      }
     } catch (error) {
-        // console.log(error.message);
-        
+      console.error(error.message);
     }
-  }
+  };
 
-  // handle reject
-  const handleReject =async (email)=>{
+  const handleReject = async (email) => {
     try {
-        const { data} =await axiosSecure.delete(`/changeStatus/${email}`)
-        toast.custom(<p className="text-orange-400 font-bold">User Rejected</p>)
-        // console.log(data);
-        refetch()
-        
+      await axiosSecure.delete(`/changeStatus/${email}`);
+      toast.custom(
+        <p className="text-orange-400 font-bold">User Rejected</p>
+      );
+      refetch();
     } catch (error) {
-        // console.log(error.message);
-        
+      console.error(error.message);
     }
-  }
+  };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6">Agreement Requests</h2>
-      <div className="space-y-5">
-        {agreements.length > 0 &&
+    <div className="w-full mx-auto py-6">
+      <h2 className="text-3xl font-bold text-[#1A3D7C] mb-6 text-center">
+        Agreement Requests
+      </h2>
+      <div className="space-y-6">
+        {agreements.length > 0 ? (
           agreements.map((agreement) => (
-            <div 
+            <div
               key={agreement._id}
-              className="relative flex items-center bg-white shadow-lg rounded-lg p-4 max-w-4xl mx-auto border border-gray-200"
+              className="relative flex flex-col md:flex-row items-center bg-white shadow-lg rounded-xl p-6 border border-gray-200"
             >
-              <div className="flex flex-col ml-4 flex-grow space-y-2">
-                <h2 className="text-lg font-semibold text-gray-700">
+              <div className="flex-grow space-y-3">
+                <h2 className="text-xl font-semibold text-[#1A3D7C]">
                   {agreement.UserName}
                 </h2>
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Email:</span>{" "}
-                  {agreement.UserEmail}
+                <p className="text-gray-600 font-medium">
+                  Email: <span className="font-normal">{agreement.UserEmail}</span>
                 </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Floor:</span>{" "}
-                    {agreement.floorNo}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-600">
+                  <p>
+                    <span className="font-medium">Floor:</span> {agreement.floorNo}
                   </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Block:</span>{" "}
-                    {agreement.blockName}
+                  <p>
+                    <span className="font-medium">Block:</span> {agreement.blockName}
                   </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Room:</span>{" "}
-                    {agreement.apartmentNo}
+                  <p>
+                    <span className="font-medium">Room:</span> {agreement.apartmentNo}
                   </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Rent:</span> ${" "}
-                    {agreement.rent}
+                  <p>
+                    <span className="font-medium">Rent:</span> ${agreement.rent}
                   </p>
-                  <p className="absolute top-2 right-2 badge badge-primary text-sm text-white">
-                    <span className="font-medium">Status:</span> {" "}
-                    {agreement.status}
+                  <p className="col-span-2">
+                    <span className="font-medium">Request Date:</span> {moment(agreement.createdAt).format('LLL')}
                   </p>
-                  <p className="text-sm text-gray-600 col-span-2">
-                    <span className="font-medium">Request Date:</span>{" "}
-                    {moment(agreement.createdAt).format('LLL')}
-                  </p>
-                </div>
-                <div className="flex space-x-4 mt-2">
-                  <button onClick={()=>handleAccept(agreement.UserEmail)} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">
-                    Accept
-                  </button>
-                  <button onClick={()=>handleReject(agreement.UserEmail)} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">
-                    Reject
-                  </button>
                 </div>
               </div>
+              <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-0 md:ml-6">
+                <button
+                  onClick={() => handleAccept(agreement.UserEmail)}
+                  className="bg-[#1A3D7C] hover:bg-[#0F2A57] text-white px-5 py-2 rounded-lg transition duration-300"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() => handleReject(agreement.UserEmail)}
+                  className="bg-[#DC3545] hover:bg-red-700 text-white px-5 py-2 rounded-lg transition duration-300"
+                >
+                  Reject
+                </button>
+              </div>
+              <span className="absolute top-3 right-3 bg-[#F8B400] text-white px-3 py-1 rounded-full text-xs font-semibold">
+                {agreement.status}
+              </span>
             </div>
-          ))}
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No agreement requests found.</p>
+        )}
       </div>
     </div>
   );

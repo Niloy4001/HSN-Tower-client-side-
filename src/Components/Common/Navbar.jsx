@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import logo from '../../assets/logo1.png'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const handleLogout =async ()=>{
+    await logOut();
+    navigate("/")
+
+  }
   const links = (
     <>
       <NavLink className="font-medium mx-4 nav-link" to={"/"}>Home</NavLink>
       <NavLink className="font-medium mx-4 nav-link" to={"/apartment"}>Apartment</NavLink>
       <NavLink className="font-medium mx-4 nav-link" to={"/contact"}>Contact</NavLink>
       <NavLink className="font-medium mx-4 nav-link" to={"/dashboard"}>Dashboard</NavLink>
-      <NavLink className="font-medium mx-4 nav-link" to={"/contact"}>Profile</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/profile"}>Profile</NavLink>
 
     </>
   );
@@ -79,7 +85,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <button className="btn btn-sm bg-[#1A3D7C]" onClick={() => logOut()}>
+                    <button className="btn btn-sm bg-[#1A3D7C]" onClick={() => handleLogout()}>
                       Logout
                     </button>
                   </li>
