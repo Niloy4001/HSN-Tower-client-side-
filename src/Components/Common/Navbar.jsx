@@ -17,7 +17,7 @@ const Navbar = () => {
   );
   return (
     <div className="bg-[#1A3D7C] text-white sticky top-0 z-10">
-       <Link to={"/"} className="btn btn-ghost text-xl items-center md:hidden flex"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
+       <Link to={"/"} className="btn btn-ghost text-xl items-center md:hidden flex"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span><span>H<span className="text-[#F8B400]">S</span>N To<span className="text-[#F8B400]">w</span>er</span></span></Link>
       <div className="navbar px-0 w-[90%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function BannerHeading() {
   return (
@@ -11,9 +12,9 @@ export default function BannerHeading() {
          Explore modern living with top-notch amenities. <br />
          Apply for membership and enjoy a hassle-free rental experience.
       </p>
-      <button className="mt-6 bg-[#F8B400] text-[#1A3D7C] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#e6a100] transition duration-300">
+      <Link to={"/apartment"} className=" bg-[#F8B400] text-[#1A3D7C] btn mt-5 border-none rounded-lg text-lg font-semibold hover:bg-[#e6a100] transition duration-300">
         Choose Apartment
-      </button>
+      </Link>
     </div>
   );
 }

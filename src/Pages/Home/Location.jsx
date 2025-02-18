@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 const Location = () => {
   return (
     <div className="py-7 px-5 lg:px-0">
-      <h1 className="text-4xl lg:text-5xl font-bold  text-[#2C3E50] leading-tight text-center mb-6">
-        Location
-      </h1>
+      {/* Section Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1A3D7C] mb-6">
+        Find Us <span className="text-[#F8B400]">Easily</span>
+      </h2>
+      <p className="text-[#2C3E50] text-lg text-center mb-10">
+        Located in the heart of Dhaka, HSN Tower offers prime accessibility and
+        convenience.
+      </p>
+
       <div className="bg-white  p-8 rounded-lg  w-[90%] mx-auto">
         {/*  Upper content */}
         <div className="w-full h-[300px] mb-7">

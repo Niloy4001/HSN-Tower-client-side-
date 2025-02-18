@@ -27,9 +27,13 @@ const Coupon = () => {
 
   return (
     <div className="w-[90%] mx-auto">
-      <h1 className="text-4xl lg:text-5xl font-bold  text-[#2C3E50] leading-tight text-center mb-6">
-        Collect Coupon
-      </h1>
+      {/* Section Heading */}
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1A3D7C] mb-6">
+        Unlock <span className="text-[#F8B400]">Exclusive Offers</span>
+      </h2>
+      <p className="text-[#2C3E50] text-lg text-center mb-10">
+        Grab special discounts and benefits by collecting your coupon today!
+      </p>
 
       {coupons.length > 0 && (
         <div className=" justify-center items-center  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -43,7 +47,9 @@ const Coupon = () => {
                 <h1 className="text-3xl font-bold text-[#2C3E50]">
                   {coupon?.discountPercentage}% OFF
                 </h1>
-                <p className="mt-4 text-sm overflow-y-auto">{coupon?.couponDescription}</p>
+                <p className="mt-4 text-sm overflow-y-auto">
+                  {coupon?.couponDescription}
+                </p>
               </div>
 
               {/* Right Section */}
@@ -57,7 +63,12 @@ const Coupon = () => {
                     Unavailable
                   </div>
                 )}
-                <CopyToClipboard text={coupon?.couponCode} className="text-xl font-semibold text-[#F8B400] tooltip" data-tip="click to copy" onCopy={() => toast.success('copied')} >
+                <CopyToClipboard
+                  text={coupon?.couponCode}
+                  className="text-xl font-semibold text-[#F8B400] tooltip"
+                  data-tip="click to copy"
+                  onCopy={() => toast.success("copied")}
+                >
                   <button>{coupon?.couponCode}</button>
                 </CopyToClipboard>
                 {/* <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2> */}
