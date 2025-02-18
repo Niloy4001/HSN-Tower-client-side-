@@ -27,7 +27,7 @@ const Coupon = () => {
 
   return (
     <div className="w-[90%] mx-auto">
-      <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">
+      <h1 className="text-4xl lg:text-5xl font-bold  text-[#2C3E50] leading-tight text-center mb-6">
         Collect Coupon
       </h1>
 
@@ -36,14 +36,14 @@ const Coupon = () => {
           {coupons.map((coupon) => (
             <div
               key={coupon._id}
-              className="flex bg-gradient-to-b bg-[#FFFFFF] text-gray-300 rounded-lg shadow-lg"
+              className=" flex bg-gradient-to-b bg-[#FFFFFF] text-[#6C757D] rounded-lg shadow-lg h-[140px]"
             >
               {/* Left Section */}
               <div className="flex flex-col justify-center items-start p-6 w-1/2 border-r border-dashed border-gray-400">
-                <h1 className="text-3xl font-bold">
+                <h1 className="text-3xl font-bold text-[#2C3E50]">
                   {coupon?.discountPercentage}% OFF
                 </h1>
-                <p className="mt-4 text-sm">{coupon?.couponDescription}</p>
+                <p className="mt-4 text-sm overflow-y-auto">{coupon?.couponDescription}</p>
               </div>
 
               {/* Right Section */}
@@ -57,7 +57,7 @@ const Coupon = () => {
                     Unavailable
                   </div>
                 )}
-                <CopyToClipboard text={coupon?.couponCode} className="text-xl font-semibold tooltip" data-tip="click to copy" onCopy={() => toast.success('copied')} >
+                <CopyToClipboard text={coupon?.couponCode} className="text-xl font-semibold text-[#F8B400] tooltip" data-tip="click to copy" onCopy={() => toast.success('copied')} >
                   <button>{coupon?.couponCode}</button>
                 </CopyToClipboard>
                 {/* <h2 className="text-xl font-semibold">{coupon?.couponCode}</h2> */}
