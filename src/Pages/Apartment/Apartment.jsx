@@ -131,7 +131,7 @@ const Apartment = () => {
       {/* filter */}
       <div className="flex justify-center py-6 mb-4">
         <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className="btn m-1 btn-primary">
+          <div tabIndex={0} role="button" className="btn m-1 btn-sm bg-[#1A3D7C]">
             Filter
           </div>
           <ul
@@ -156,7 +156,7 @@ const Apartment = () => {
                 />
               </li>
               <li>
-                <button className="btn btn-primary">Filter</button>
+                <button className="btn btn-sm bg-[#1A3D7C]">Filter</button>
               </li>
             </form>
           </ul>
@@ -167,7 +167,7 @@ const Apartment = () => {
           {apartments.data.map((apartment) => (
             <div
               key={apartment._id}
-              className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+              className="max-w-sm mx-auto bg-[#FFFFFF] shadow-lg rounded-lg overflow-hidden border border-gray-200"
             >
               <img
                 src={apartment.apartmentImage}
@@ -204,7 +204,7 @@ const Apartment = () => {
       {apartments.data.length < 1 && (
         <div className="flex min-h-screen justify-center items-center">
           <div>
-            <button className="btn" onClick={() => navigate(-1)}>
+            <button className="btn bg-[#1A3D7C]" onClick={() => navigate(-1)}>
               Go Back
             </button>
             <p className="font-bold text-xl text-center">No Data Found</p>
@@ -216,7 +216,7 @@ const Apartment = () => {
         <div>
           <button
             disabled={currentPage === 1}
-            className="btn btn-primary"
+            className="btn btn-sm bg-[#1A3D7C]"
             onClick={() => handleNextPrevBtn("prev")}
           >
             Prev
@@ -227,7 +227,7 @@ const Apartment = () => {
             <button
               key={idx}
               onClick={(e) => handlePageChange(e.target.innerText)}
-              className="btn"
+              className="btn bg-[#1A3D7C]"
             >
               {Number(idx) + 1}
             </button>
@@ -236,7 +236,7 @@ const Apartment = () => {
         <div>
           <button
             disabled={currentPage === apartments.totalPages}
-            className="btn btn-primary"
+            className="btn btn-sm bg-[#1A3D7C]"
             onClick={() => handleNextPrevBtn("next")}
           >
             Next

@@ -167,7 +167,7 @@ const CheckoutForm = () => {
         <div className="flex justify-center mt-7">
           <button
             type="submit"
-            className="btn bg-blue-500 text-white font-bold hover:bg-blue-600"
+            className="btn bg-[#1A3D7C] text-white font-bold hover:bg-blue-600"
             disabled={!stripe || !clientSecret}
           >
             Pay

@@ -1,19 +1,22 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo1.png'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const links = (
     <>
-      <NavLink className="font-medium mx-4" to={"/"}>Home</NavLink>
-      <NavLink className="font-medium mx-4" to={"/apartment"}>Apartment</NavLink>
-      <NavLink className="font-medium mx-4" to={"/contact"}>Contact</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/"}>Home</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/apartment"}>Apartment</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/contact"}>Contact</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/dashboard"}>Dashboard</NavLink>
+      <NavLink className="font-medium mx-4 nav-link" to={"/contact"}>Profile</NavLink>
+
     </>
   );
   return (
-    <div>
+    <div className="bg-[#1A3D7C] text-white sticky top-0 z-10">
        <Link to={"/"} className="btn btn-ghost text-xl items-center md:hidden flex"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
       <div className="navbar w-[90%] mx-auto">
         <div className="navbar-start">
@@ -41,12 +44,13 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="btn btn-ghost text-xl items-center md:flex hidden"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <Link to={"/"} className="text-xl items-center md:flex hidden"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>H<span className="text-[#F8B400]">S</span>N To<span className="text-[#F8B400]">w</span>er</span></Link>
         </div>
         <div className="navbar-end">
+        <div className=" hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+        <div className="">
           {user ? (
             <>
               {/* profile icon */}
@@ -70,12 +74,12 @@ const Navbar = () => {
                 >
                   <li className="text-center font-bold">{user && user.displayName}</li>
                   <li>
-                    <Link to={"/dashboard"} className="btn btn-sm">
+                    <Link to={"/dashboard"} className="btn bg-[#1A3D7C] btn-sm">
                       Dashboard
                     </Link>
                   </li>
                   <li>
-                    <button className="btn btn-sm" onClick={() => logOut()}>
+                    <button className="btn btn-sm bg-[#1A3D7C]" onClick={() => logOut()}>
                       Logout
                     </button>
                   </li>
@@ -84,14 +88,15 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to={"/login"} className="btn">
-                Log In
+              <Link to={"/login"} className="mr-8 font-medium">
+                Login
               </Link>
-              <Link to={"/register"} className="btn">
+              <Link to={"/register"} className=" font-medium">
                 Register
               </Link>
             </>
           )}
+        </div>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Footer = () => {
           </div>
 
           <p>
-            <Link to={"/"} className="btn btn-ghost text-xl">
+            <Link to={"/"} className="btn btn-ghost bg-[#1A3D7C] text-xl">
               HSN Tower
             </Link>
             <br />

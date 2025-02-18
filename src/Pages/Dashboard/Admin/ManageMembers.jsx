@@ -67,7 +67,7 @@ const ManageMembers = () => {
         {/* <th>{member?.displayName}</th> */}
         <th>{member?.name}</th>
         <td>{member?.email}</td>
-        <td><button className='btn btn-sm' onClick={()=>handleRemove(member?._id, member?.email)}>Remove</button></td>
+        <td><button className='btn btn-sm bg-[#1A3D7C]' onClick={()=>handleRemove(member?._id, member?.email)}>Remove</button></td>
       </tr>)}
     </tbody>
   </table>

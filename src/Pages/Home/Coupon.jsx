@@ -36,7 +36,7 @@ const Coupon = () => {
           {coupons.map((coupon) => (
             <div
               key={coupon._id}
-              className="flex bg-gradient-to-b from-blue-500 to-blue-800 text-gray-300 rounded-lg shadow-lg"
+              className="flex bg-gradient-to-b bg-[#FFFFFF] text-gray-300 rounded-lg shadow-lg"
             >
               {/* Left Section */}
               <div className="flex flex-col justify-center items-start p-6 w-1/2 border-r border-dashed border-gray-400">

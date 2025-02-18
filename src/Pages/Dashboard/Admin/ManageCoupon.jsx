@@ -92,7 +92,7 @@ const ManageCoupon = () => {
                     </td> */}
                     <td>{coupon?.availability ? <p className="text-green-600">Available</p> : <p className="text-red-500">Unavailable</p>}</td>
                     <td>{coupon?.couponDescription}</td>
-                    <td><button className="btn btn-xs" onClick={()=>handleAvailability(coupon._id)}>Change Availability</button></td>
+                    <td><button className="btn bg-[#1A3D7C] btn-xs" onClick={()=>handleAvailability(coupon._id)}>Change Availability</button></td>
                   </tr>
                 ))}
               </tbody>
@@ -103,7 +103,7 @@ const ManageCoupon = () => {
       {coupons.length < 1 && <p>No Coupons</p>}
       <div>
         <button
-          className="btn btn-primary"
+          className="btn btn-sm bg-[#1A3D7C]"
           onClick={() => document.getElementById("my_modal_5").showModal()}
         >
           Add

@@ -17,12 +17,12 @@ const DashboardLayout = () => {
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn bg-[#1A3D7C] btn-primary drawer-button lg:hidden"
           >
             <RiArchiveDrawerFill /> Open Dashboard
           </label>
           <div className="flex ml-4 justify-center ">
-          <Link className="btn  " to={"/"}>
+          <Link className="btn  bg-[#1A3D7C]" to={"/"}>
           Go to Home
           </Link>
           </div>
