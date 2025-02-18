@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <div className="bg-[#1A3D7C] text-white sticky top-0 z-10">
        <Link to={"/"} className="btn btn-ghost text-xl items-center md:hidden flex"><img src={logo} alt=""  className="w-[60px] h-[60px]"/><span>HSN Tower</span></Link>
-      <div className="navbar w-[90%] mx-auto">
+      <div className="navbar px-0 w-[90%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
