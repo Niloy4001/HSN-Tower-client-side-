@@ -3,24 +3,27 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Spinner from "../../Components/Common/Spinner";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useRole from "../../hooks/useRole";
+import { BiFilter } from "react-icons/bi";
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 const Apartment = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState();
-  // console.log(filter);
   const navigate = useNavigate();
-
-  // console.log(currentPage);
 
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const {role} = useRole()
+  const { role } = useRole();
+
   const {
     isPending,
     isError,
@@ -28,7 +31,7 @@ const Apartment = () => {
     error,
     refetch,
   } = useQuery({
-    queryKey: ["apartments"],
+    queryKey: ["apartments", currentPage, filter],
     queryFn: async () => {
       const { data } = await axiosPublic.get(
         `/apartments?page=${currentPage}&min=${filter?.min}&max=${filter?.max}`
@@ -37,137 +40,86 @@ const Apartment = () => {
     },
   });
 
-  useEffect(() => {
-    refetch();
-  }, [currentPage, filter]);
+  if (isPending) return <Spinner />;
+  if (isError)
+    return <span className="text-red-500">Error: {error.message}</span>;
 
-  if (isPending) {
-    return <Spinner></Spinner>;
-  }
-  
-  
-
-  const arr = [...Array(apartments.totalPages).keys()];
-
-  // console.log(arr);
-
-  // handle page changes
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-  // handle next and previous page changes
+  const handlePageChange = (page) => setCurrentPage(page);
   const handleNextPrevBtn = (status) => {
-    if (status === "next") {
-      const pageNum = currentPage + 1;
-      if (pageNum > apartments.totalPages) {
-        return;
-      } else {
-        setCurrentPage(currentPage + 1);
-      }
+    if (status === "next" && currentPage < apartments.totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    } else if (status === "prev" && currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
     }
-    if (status === "prev") {
-      const pageNum = currentPage - 1;
-      if (pageNum < 1) {
-        return;
-      } else {
-        setCurrentPage(currentPage - 1);
-      }
-    }
-
-    // console.log(status);
   };
 
-  if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  // handle filter
   const handleFilter = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const min = form.min.value;
-    const max = form.max.value;
-
-    setFilter({ min: min, max: max });
-    form.reset();
+    const min = e.target.min.value;
+    const max = e.target.max.value;
+    setFilter({ min, max });
+    e.target.reset();
   };
 
+  const handleAgreement = async (apartment) => {
+    if (!user) return navigate("/login");
+    if (role === "Admin") return toast.error("Admin cannot request agreement");
+    if (role === "Member")
+      return toast.error("Member already has an apartment");
 
-  // handle Agreement
-  const handleAgreement =async (apartment) =>{
-    if (!user) {
-      return navigate('/login')
-    }
-    if (role === "Admin" ) {
-      return toast.error("Admin cannot request agreement")
-    }
-    if ( role === "Member") {
-      return toast.error(" Member has already an appartment")
-    }
-    
-    apartment.UserName = user?.displayName
-    apartment.UserEmail = user?.email
-    apartment.status = "Pending"
-    // console.log(apartment);
+    const newAgreement = {
+      ...apartment,
+      UserName: user?.displayName,
+      UserEmail: user?.email,
+      status: "Pending",
+    };
 
-    const {data} = await axiosSecure.post('/agreement',apartment)
-    if (data.acknowledged) {
-      toast.success(" Your agreement request submitted")
-    }
-    if (data.message) {
-      toast.error(" You can't multiple agreement")
-    }
+    const { data } = await axiosSecure.post("/agreement", newAgreement);
+    data.acknowledged
+      ? toast.success("Agreement request submitted!")
+      : toast.error("Cannot submit multiple agreements");
+  };
 
-
-    
-
-    
-  }
   return (
-    <div className="w-[90%] mx-auto">
-     <h1 className="text-4xl lg:text-5xl font-bold  text-gray-900 leading-tight text-center mb-6">
-       Explore All Apartment
-      </h1>
-      {/* filter */}
-      <div className="flex justify-center py-6 mb-4">
-        <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className="btn m-1 btn-sm bg-[#1A3D7C]">
-            Filter
-          </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-          >
-            <form className="space-y-2" onSubmit={(e) => handleFilter(e) }>
-              <li>
-                <input
-                  name="min"
-                  type="number"
-                  placeholder="Min Price"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </li>
-              <li>
-                <input
-                  name="max"
-                  type="number"
-                  placeholder="Max Price"
-                  className="input input-bordered w-full max-w-xs"
-                />
-              </li>
-              <li>
-                <button className="btn btn-sm bg-[#1A3D7C]">Filter</button>
-              </li>
-            </form>
-          </ul>
+    <div className="w-[90%] mx-auto py-10">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1A3D7C] mb-6">
+        Explore <span className="text-[#F8B400]">All Apartments</span>
+      </h2>
+      <p className="text-[#2C3E50] text-lg text-center mb-10">
+        Discover a wide range of apartments with modern amenities and prime
+        locations.
+      </p>
+
+      {/* Filter Section */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <form className="flex gap-4" onSubmit={handleFilter}>
+            <input
+              name="min"
+              type="number"
+              placeholder="Min Price"
+              className="input input-bordered w-32"
+            />
+            <input
+              name="max"
+              type="number"
+              placeholder="Max Price"
+              className="input input-bordered w-32"
+            />
+            <button className="btn bg-[#1A3D7C] text-white flex items-center">
+              <BiFilter className="mr-2" /> Filter
+            </button>
+          </form>
         </div>
       </div>
-      {apartments.data.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-          {apartments.data.map((apartment) => (
+
+      {/* Apartment Listings */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {apartments.data.length > 0 ? (
+          apartments.data.map((apartment) => (
             <div
               key={apartment._id}
-              className="max-w-sm mx-auto bg-[#FFFFFF] shadow-lg rounded-lg overflow-hidden border border-gray-200"
+              className="bg-white shadow-md rounded-lg overflow-hidden"
             >
               <img
                 src={apartment.apartmentImage}
@@ -175,74 +127,62 @@ const Apartment = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-xl font-bold text-gray-800">Apartment</h2>
-                <p className="mt-2 text-gray-600">
-                  <span className="font-semibold">Floor No:</span>{" "}
-                  {apartment.floorNo}
-                </p>
-                <p className="mt-1 text-gray-600">
-                  <span className="font-semibold">Block Name:</span>{" "}
+                <h2 className="text-xl font-semibold text-gray-800">
                   {apartment.blockName}
+                </h2>
+                <p className="text-gray-600">Floor: {apartment.floorNo}</p>
+                <p className="text-gray-600">
+                  Apartment No: {apartment.apartmentNo}
                 </p>
-                <p className="mt-1 text-gray-600">
-                  <span className="font-semibold">Apartment No:</span>{" "}
-                  {apartment.apartmentNo}
-                </p>
-                <p className="mt-1 text-gray-600">
-                  <span className="font-semibold">Rent:</span> ৳{apartment.rent}
+                <p className="text-gray-900 font-semibold">
+                  Rent: ৳{apartment.rent}
                 </p>
                 <button
-                onClick={()=>handleAgreement(apartment)}
-                className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                 Agreement
+                  onClick={() => handleAgreement(apartment)}
+                  className="mt-4 w-full bg-[#1A3D7C] text-white py-2 rounded-md"
+                >
+                  Request Agreement
                 </button>
               </div>
             </div>
-          ))}
-        </div>
-      )}
-      {apartments.data.length < 1 && (
-        <div className="flex min-h-screen justify-center items-center">
-          <div>
-            <button className="btn bg-[#1A3D7C]" onClick={() => navigate(-1)}>
+          ))
+        ) : (
+          <div className="col-span-full flex flex-col items-center">
+            <p className="text-xl font-semibold text-gray-700">
+              No apartments found.
+            </p>
+            <button
+              className="mt-4 btn bg-[#1A3D7C] text-white"
+              onClick={() => navigate(-1)}
+            >
               Go Back
             </button>
-            <p className="font-bold text-xl text-center">No Data Found</p>
           </div>
-        </div>
-      )}
-      {/* pagination button */}
-      <div className="flex justify-center flex-wrap py-8 gap-2">
-        <div>
+        )}
+      </div>
+
+      {/* Pagination */}
+      {apartments.data.length > 0 && (
+        <div className="flex justify-center items-center gap-4 mt-8">
           <button
             disabled={currentPage === 1}
-            className="btn btn-sm bg-[#1A3D7C]"
+            className="btn bg-[#1A3D7C] text-white"
             onClick={() => handleNextPrevBtn("prev")}
           >
-            Prev
+            <BsFillArrowLeftCircleFill /> Prev
           </button>
-        </div>
-        <div className="flex justify-center gap-2">
-          {arr.map((idx) => (
-            <button
-              key={idx}
-              onClick={(e) => handlePageChange(e.target.innerText)}
-              className="btn bg-[#1A3D7C]"
-            >
-              {Number(idx) + 1}
-            </button>
-          ))}
-        </div>
-        <div>
+          <span className="text-lg font-semibold text-gray-800">
+            Page {currentPage} of {apartments.totalPages}
+          </span>
           <button
             disabled={currentPage === apartments.totalPages}
-            className="btn btn-sm bg-[#1A3D7C]"
+            className="btn bg-[#1A3D7C] text-white"
             onClick={() => handleNextPrevBtn("next")}
           >
-            Next
+            Next <BsFillArrowRightCircleFill />
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
