@@ -104,10 +104,10 @@ const Register = () => {
           <div className="bg-white w-full md:w-[50%] p-4 shrink-0 shadow-2xl">
             {/* title */}
             <h1 className="text-4xl text-center font-bold mb-5 flex justify-between items-center px-6">
-              <span>Register</span>
+              <span className="text-[#1A3D7C]">Register</span>
               <button
                 onClick={handleGoogleLogIn}
-                className="text-2xl text-[#0B0223]"
+                className="text-2xl text-[#F8B400]"
               >
                 <FaGoogle></FaGoogle>
               </button>
@@ -189,7 +189,7 @@ const Register = () => {
               <p className="mb-4">Already Have an Account?</p>
               <Link
                 to={"/login"}
-                className="px-6 py-2 text-pink-500 bg-white rounded-md font-semibold hover:bg-pink-100"
+                className="px-6 py-2 text-[#1A3D7C] bg-white rounded-md font-semibold hover:bg-pink-100"
               >
                 Log In
               </Link>

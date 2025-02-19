@@ -84,11 +84,11 @@ const MemberProfile = () => {
 
         {/* Call-to-Action Button (Optional) */}
         <div className="p-6 bg-[#F4F6F9] text-center">
-          <button
+          {/* <button
             className="bg-[#1A3D7C] text-white px-6 py-2 rounded-lg hover:bg-[#0A1E3D] transition-all"
           >
             Update Profile
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

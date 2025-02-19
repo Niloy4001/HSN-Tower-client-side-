@@ -25,6 +25,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import Contact from "../Pages/Contact";
 import Profile from "../Components/Profile";
+import Overview from "../Pages/Dashboard/Admin/Overview";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <PrivateRoute><ManageMembers></ManageMembers></PrivateRoute>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/overview",
+        element: (
+          <AdminPrivateRoute>
+            <PrivateRoute><Overview></Overview></PrivateRoute>
           </AdminPrivateRoute>
         ),
       },

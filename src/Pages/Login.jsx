@@ -61,9 +61,9 @@ const Login = () => {
           <div className=" bg-white w-full md:w-[50%] p-4 shrink-0 shadow-2xl">
             {/* title */}
             <h1 className="text-4xl text-center font-bold mb-5 flex justify-between items-center px-6">
-              <span >Log In</span>
+              <span className="text-[#1A3D7C]" >Log In</span>
               {/* google log in */}
-              <button onClick={handleGoogleLogIn}  className="text-2xl text-[#0B0223]">
+              <button onClick={handleGoogleLogIn}  className="text-2xl text-[#F8B400]">
                 <FaGoogle></FaGoogle>
               </button>
             </h1>
@@ -118,7 +118,7 @@ const Login = () => {
               <p className="mb-4">Don't have an account?</p>
               <Link
                 to={"/register"}
-                className="px-6 py-2 text-pink-500 bg-white rounded-md font-semibold hover:bg-pink-100"
+                className="px-6 py-2 text-[#1A3D7C] bg-white rounded-md font-semibold hover:bg-pink-100"
               >
                 Sign Up
               </Link>

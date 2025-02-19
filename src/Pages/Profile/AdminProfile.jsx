@@ -5,14 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Components/Common/Spinner";
 
 const AdminProfile = () => {
-  const {user  } = useContext(AuthContext)
-const axiosSecure = useAxiosSecure()
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+
   const {
     isPending,
-    isError,
     data: info,
-    error,
-    refetch,
   } = useQuery({
     queryKey: ["adminProfile", user?.email],
     queryFn: async () => {
@@ -21,63 +19,57 @@ const axiosSecure = useAxiosSecure()
     },
   });
 
-  // console.log(info);
-  
-
   if (isPending) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
 
-
-
-
-
   return (
-    <div className="bg-gray-100 min-h-screen p-6 flex justify-center">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-4xl p-8">
+    <div className="bg-gray-100 min-h-screen flex justify-center py-12 px-4 md:px-8">
+      <div className="bg-white shadow-xl rounded-lg w-full max-w-4xl p-8 border border-gray-200">
         {/* Admin Profile Section */}
-        <div className="flex md:flex-row flex-col items-center mb-8">
+        <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <img
-          referrerPolicy="no-referrer"
+            referrerPolicy="no-referrer"
             src={user?.photoURL}
             alt="Admin"
-            className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
+            className="w-28 h-28 rounded-full object-cover border-4 border-[#F8B400] shadow-md"
           />
-          <div className="ml-6">
-            <h1 className="text-2xl font-bold text-gray-800">{user?.displayName}</h1>
-            <p className="text-gray-600">{user?.email}</p>
+          <div className="mt-4 md:ml-6">
+            <h1 className="text-3xl font-bold text-[#1A3D7C]">{user?.displayName}</h1>
+            <p className="text-gray-600 text-lg">{user?.email}</p>
           </div>
         </div>
 
         {/* Statistics Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-blue-700">Total Apartments</h2>
-            <p className="text-3xl font-bold text-blue-900">{info?.totalApartments } </p>
+          {/* Total Apartments */}
+          <div className="bg-[#1A3D7C] p-6 rounded-lg shadow-md text-white text-center">
+            <h2 className="text-lg font-semibold">Total Apartments</h2>
+            <p className="text-4xl font-bold">{info?.totalApartments}</p>
           </div>
-          <div className="bg-green-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-green-700">
-              Available Apartments
-            </h2>
-            <p className="text-3xl font-bold text-green-900">{info?.available}%</p>
+
+          {/* Available Apartments */}
+          <div className="bg-[#28A745] p-6 rounded-lg shadow-md text-white text-center">
+            <h2 className="text-lg font-semibold">Available Apartments</h2>
+            <p className="text-4xl font-bold">{info?.available}%</p>
           </div>
-          <div className="bg-red-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-red-700">
-              Unavailable
-            </h2>
-            <p className="text-3xl font-bold text-red-900">{info?.unavailable}%</p>
+
+          {/* Unavailable Apartments */}
+          <div className="bg-[#DC3545] p-6 rounded-lg shadow-md text-white text-center">
+            <h2 className="text-lg font-semibold">Unavailable</h2>
+            <p className="text-4xl font-bold">{info?.unavailable}%</p>
           </div>
-          <div className="bg-purple-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-purple-700">
-              Total Users
-            </h2>
-            <p className="text-3xl font-bold text-purple-900">{info?.totalUsers}</p>
+
+          {/* Total Users */}
+          <div className="bg-[#F8B400] p-6 rounded-lg shadow-md text-white text-center">
+            <h2 className="text-lg font-semibold">Total Users</h2>
+            <p className="text-4xl font-bold">{info?.totalUsers}</p>
           </div>
-          <div className="bg-yellow-50 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-yellow-700">
-              Total Members
-            </h2>
-            <p className="text-3xl font-bold text-yellow-900">{info?.totalMembers}</p>
+
+          {/* Total Members */}
+          <div className="bg-[#6C757D] p-6 rounded-lg shadow-md text-white text-center">
+            <h2 className="text-lg font-semibold">Total Members</h2>
+            <p className="text-4xl font-bold">{info?.totalMembers}</p>
           </div>
         </div>
       </div>

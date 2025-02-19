@@ -76,16 +76,16 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow space-y-2"
+                  className="menu menu-sm dropdown-content bg-[#1A3D7C] rounded-box z-[10] mt-3 w-52 p-2 shadow space-y-2"
                 >
                   <li className="text-center font-bold">{user && user.displayName}</li>
                   <li>
-                    <Link to={"/dashboard"} className="btn bg-[#1A3D7C] btn-sm">
+                    <Link to={"/dashboard"} className="btn bg-[#F8B400] border-none text-[#1A3D7C] btn-sm">
                       Dashboard
                     </Link>
                   </li>
                   <li>
-                    <button className="btn btn-sm bg-[#1A3D7C]" onClick={() => handleLogout()}>
+                    <button className="btn btn-sm bg-[#F8B400] text-[#1A3D7C] border-none" onClick={() => handleLogout()}>
                       Logout
                     </button>
                   </li>

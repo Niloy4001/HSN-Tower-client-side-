@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { RiArchiveDrawerFill } from "react-icons/ri";
 import useRole from "../hooks/useRole";
 import { Toaster } from "react-hot-toast";
+import '../index.css'
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -58,7 +59,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/userProfile"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     My Profile
                   </NavLink>
@@ -66,7 +67,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/announcements"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Announcements
                   </NavLink>
@@ -80,7 +81,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/membersProfile"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     My Profile
                   </NavLink>
@@ -88,7 +89,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/makePayment"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Make Payment
                   </NavLink>
@@ -96,7 +97,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/paymentHistory"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Payment History
                   </NavLink>
@@ -104,7 +105,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/announcements"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Announcements
                   </NavLink>
@@ -118,15 +119,23 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/adminProfile"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Admin Profile
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
+                    to="/dashboard/overview"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
+                  >
+                    Overview
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="/dashboard/manageMembers"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Manage Members
                   </NavLink>
@@ -134,7 +143,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/makeAnnouncement"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Make Announcement
                   </NavLink>
@@ -142,7 +151,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/agreementRequests"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Agreement Requests
                   </NavLink>
@@ -150,7 +159,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manageCoupons"
-                    className="hover:bg-[#0A1E3D] rounded-lg"
+                    className={`hover:bg-[#0A1E3D] rounded-lg`}
                   >
                     Manage Coupons
                   </NavLink>
