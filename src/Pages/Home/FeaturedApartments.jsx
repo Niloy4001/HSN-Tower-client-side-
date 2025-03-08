@@ -21,7 +21,7 @@ const FeaturedApartments = () => {
     },
   });
 
-  console.log(apartments);
+  // console.log(apartments);
   if (isPending) {
     return <Spinner></Spinner>;
   }

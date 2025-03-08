@@ -22,7 +22,7 @@ const Overview = () => {
   if (isPending) {
     return <Spinner></Spinner>;
   }
-  console.log(stats);
+  // console.log(stats);
   
 
   const rent = [
@@ -64,7 +64,7 @@ const Overview = () => {
       }
     }
   });
-  console.log(rent);
+  // console.log(rent);
   
   
 
